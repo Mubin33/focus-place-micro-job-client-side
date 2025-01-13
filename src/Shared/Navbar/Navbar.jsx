@@ -27,7 +27,7 @@ const Navbar = () => {
         </li>
       </Link>
       <li>
-        <p>Customer</p>
+        <p>Worker</p>
       </li>
     </>
   );
@@ -59,9 +59,12 @@ const Navbar = () => {
               {navItems}
             </ul>
           </div>
-          <Link to="/">
+          {user ? <Link to="/dashboard/home">
             <p className="btn btn-ghost text-xl">Focus Place</p>
-          </Link>
+          </Link> :<Link to="/">
+            <p className="btn btn-ghost text-xl">Focus Place</p>
+          </Link>}
+          
         </div>
 
         {user ? (

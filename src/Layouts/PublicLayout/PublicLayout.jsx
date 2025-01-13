@@ -6,7 +6,7 @@ import Footer from "./../../Shared/Footer/Footer";
 const PublicLayout = () => {
   return (
     <div>
-      <div className="bg-base-300 sticky top-0">
+      <div className="bg-base-300 z-10 sticky top-0">
         <div className="max-w-screen-xl mx-auto">
           <Navbar />
         </div>

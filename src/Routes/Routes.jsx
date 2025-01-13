@@ -14,6 +14,7 @@ import BuyerPurchaseCoin from './../Pages/DashboardPages/BuyerPages/BuyerPurchas
 import WorkerTaskList from './../Pages/DashboardPages/WorkerPages/WorkerTaskList';
 import WorkerMySubmissions from './../Pages/DashboardPages/WorkerPages/WorkerMySubmissions';
 import WorkerWithdrawals from './../Pages/DashboardPages/WorkerPages/WorkerWithdrawals';
+import PrivetRoute from "../PrivetRoute/PrivetRoute";
 
 
 export const router = createBrowserRouter([
@@ -23,7 +24,8 @@ export const router = createBrowserRouter([
     // errorElement: <Error />,
     children: [
         {path:'/', element:<PublicHome/>},
-        {path:'/dashboard', element:<Dashboard/>, children:[
+        {path:'/dashboard', element:<PrivetRoute><Dashboard/> </PrivetRoute> , 
+          children:[
           {path:'home', element:<DashboardHome/>},
           // admin routes
           {path:'adminmanagetask', element:<AdminManageTask/>},

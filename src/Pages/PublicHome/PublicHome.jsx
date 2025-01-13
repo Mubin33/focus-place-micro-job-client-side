@@ -1,9 +1,9 @@
-import React from 'react';
+import React from 'react'; 
 
 const PublicHome = () => {
     return (
-        <div>
-            Home
+        <div >
+            Home 
         </div>
     );
 };
