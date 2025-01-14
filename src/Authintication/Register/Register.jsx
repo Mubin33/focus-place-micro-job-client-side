@@ -1,13 +1,13 @@
 import React, { useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { useForm } from "react-hook-form";
-// import UseAxiosPublic from "../Hooks/UseAxiosPublic";
+import { useForm } from "react-hook-form"; 
 import Swal from "sweetalert2";
 import SocialLogin from "../SocialLogin/SocialLogin";
 import { AuthContext } from "../AuthProvider/AuthProvider";
+import useAxiosPublic from './../../Hooks/useAxiosPublic/useAxiosPublic';
 
 const Register = () => {
-  //   const axiosPublic = UseAxiosPublic();
+    const axiosPublic = useAxiosPublic();
   const navigate = useNavigate();
 
   const { registerUser, updateUser } = useContext(AuthContext);
@@ -25,17 +25,17 @@ const Register = () => {
         console.log(result);
         updateUser(data?.name, data?.photo)
           .then(() => {
-            // console.log(result)
-            // const userInfo = { name: data?.name, email: data?.email };
-            // axiosPublic.post("/users", userInfo).then((res) => {
-            //   if (res.data.insertedId) {
-            //     Swal.fire({
-            //       title: "Wow!",
-            //       text: "Successfully joined.",
-            //       icon: "success",
-            //     });
-            //   }
-            // });
+            console.log(result)
+            const userInfo = { name: data?.name, email: data?.email };
+            axiosPublic.post("/users/add", userInfo).then((res) => {
+              if (res.data.insertedId) {
+                Swal.fire({
+                  title: "Wow!",
+                  text: "Successfully joined.",
+                  icon: "success",
+                });
+              }
+            });
             reset();
             // navigate("/");
           })

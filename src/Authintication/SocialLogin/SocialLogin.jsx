@@ -2,31 +2,31 @@ import React, { useContext } from "react";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../AuthProvider/AuthProvider";
-// import UseAxiosPublic from "../Hooks/UseAxiosPublic";
+import useAxiosPublic from "../../Hooks/useAxiosPublic/useAxiosPublic"; 
 
 const SocialLogin = () => {
   const navigate = useNavigate();
   const { googleLogin } = useContext(AuthContext);
-//   const axiosPublic = UseAxiosPublic();
+  const axiosPublic = useAxiosPublic();
 
   const googlePopup = () => {
     googleLogin()
       .then((result) => {
-        // const userInfo = {
-        //   email: result.user.email,
-        //   name: result.user.displayName,
-        // };
-        // console.log(userInfo);
-        // axiosPublic.post("/users", userInfo).then((res) => {
-        //   if (res) {
-        //       Swal.fire({
-        //           title: "Wow!",
-        //           text: "Successfully joined.",
-        //           icon: "success",
-        //         });
-        //         navigate("/");
-        //     }
-        // });
+        const userInfo = {
+          email: result.user.email,
+          name: result.user.displayName,
+        };
+        console.log(userInfo);
+        axiosPublic.post("/users", userInfo).then((res) => {
+          if (res) {
+              Swal.fire({
+                  title: "Wow!",
+                  text: "Successfully joined.",
+                  icon: "success",
+                });
+                // navigate("/");
+            }
+        });
       })
       .catch((error) => {
         console.log(error);
