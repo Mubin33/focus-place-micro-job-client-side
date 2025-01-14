@@ -15,16 +15,19 @@ const SocialLogin = () => {
         const userInfo = {
           email: result.user.email,
           name: result.user.displayName,
+          image: result.user.photoURL, 
+          role:'worker',
+          amount:10
         };
         console.log(userInfo);
-        axiosPublic.post("/users", userInfo).then((res) => {
+        axiosPublic.post("/users/add", userInfo).then((res) => {
           if (res) {
               Swal.fire({
                   title: "Wow!",
                   text: "Successfully joined.",
                   icon: "success",
                 });
-                // navigate("/");
+                navigate("/dashboard/home");
             }
         });
       })

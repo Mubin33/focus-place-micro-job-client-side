@@ -1,22 +1,25 @@
 import React, { useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { useForm } from "react-hook-form"; 
+import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
 import SocialLogin from "../SocialLogin/SocialLogin";
 import { AuthContext } from "../AuthProvider/AuthProvider";
-import useAxiosPublic from './../../Hooks/useAxiosPublic/useAxiosPublic';
+import useAxiosPublic from "./../../Hooks/useAxiosPublic/useAxiosPublic";
 
 const Register = () => {
-    const axiosPublic = useAxiosPublic();
+  const axiosPublic = useAxiosPublic();
   const navigate = useNavigate();
 
   const { registerUser, updateUser } = useContext(AuthContext);
   const {
     register,
     handleSubmit,
+    watch,
     reset,
     formState: { errors },
   } = useForm();
+
+  const selectedRole = watch("role");
 
   const onSubmit = (data) => {
     console.log(data);
@@ -25,8 +28,14 @@ const Register = () => {
         console.log(result);
         updateUser(data?.name, data?.photo)
           .then(() => {
-            console.log(result)
-            const userInfo = { name: data?.name, email: data?.email };
+            console.log(result);
+            const userInfo = {
+              name: data?.name,
+              email: data?.email,
+              image: data?.photo,
+              role: data?.role,
+              amount: parseInt( `${selectedRole === 'worker'? 10: 50}`)
+            };
             axiosPublic.post("/users/add", userInfo).then((res) => {
               if (res.data.insertedId) {
                 Swal.fire({
@@ -37,7 +46,7 @@ const Register = () => {
               }
             });
             reset();
-            // navigate("/");
+            navigate("/dashboard/home");
           })
           .catch((error) => {
             console.log(error);
@@ -156,6 +165,28 @@ const Register = () => {
                     Add any uppercase and lowercase character
                   </p>
                 )}
+                <p className="text-sm mt-2">Role:</p>
+                <div className="flex justify-around mt-1">
+                  <label>
+                    <input
+                      type="radio"
+                      value="worker"
+                      {...register("role", { required: true })}
+                    />
+                    <span className="text-sm">Worker</span>
+                  </label>
+
+                  {/* Radio Button for Buyer */}
+                  <label>
+                    <input
+                      type="radio"
+                      value="buyer"
+                      {...register("role", { required: true })}
+                    />
+                    <span className="text-sm">Buyer</span>
+                  </label>
+                </div>
+
                 <label className="label">
                   <Link to="/login" className="label-text-alt link link-hover">
                     Have already account

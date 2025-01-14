@@ -21,7 +21,8 @@ const Login = () => {
         loginUser(email, password)
                 .then((result) => {
                     console.log(result);
-                    navigate(location?.state?.from?.pathname || "/")
+                    // navigate(location?.state?.from?.pathname || "/")
+                    navigate("/dashboard/home")
                 })
                 .catch((error) => {
                     console.log(error);
