@@ -1,13 +1,13 @@
 import React, { useContext } from "react"; 
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
-import { AuthContext } from "../AuthProvider/AuthProvider";
-import useAxiosPublic from "../../Hooks/useAxiosPublic/useAxiosPublic"; 
+import { AuthContext } from "../AuthProvider/AuthProvider"; 
+import useAxiosSecure from "../../Hooks/useAxiosSecure/useAxiosSecure";
 
 const SocialLogin = () => {
   const navigate = useNavigate();
   const { googleLogin } = useContext(AuthContext);
-  const axiosPublic = useAxiosPublic();
+  const axiosSecure = useAxiosSecure();
 
   const googlePopup = () => {
     googleLogin()
@@ -20,7 +20,7 @@ const SocialLogin = () => {
           amount:10
         };
         console.log(userInfo);
-        axiosPublic.post("/users/add", userInfo).then((res) => {
+        axiosSecure.post("/users/add", userInfo).then((res) => {
           if (res) {
               Swal.fire({
                   title: "Wow!",

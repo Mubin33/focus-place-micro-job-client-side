@@ -3,11 +3,12 @@ import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
 import SocialLogin from "../SocialLogin/SocialLogin";
-import { AuthContext } from "../AuthProvider/AuthProvider";
-import useAxiosPublic from "./../../Hooks/useAxiosPublic/useAxiosPublic";
+import { AuthContext } from "../AuthProvider/AuthProvider"; 
+import useAxiosSecure from "../../Hooks/useAxiosSecure/useAxiosSecure";
+import { imageUpload } from "../../api/utlis";
 
-const Register = () => {
-  const axiosPublic = useAxiosPublic();
+const Register = () => { 
+  const axiosSecure = useAxiosSecure()
   const navigate = useNavigate();
 
   const { registerUser, updateUser } = useContext(AuthContext);
@@ -21,22 +22,24 @@ const Register = () => {
 
   const selectedRole = watch("role");
 
-  const onSubmit = (data) => {
+  const onSubmit =async (data) => {
     console.log(data);
+    const image = data.image[0]
+    const photo = await imageUpload(image)
     registerUser(data?.email, data?.password)
       .then((result) => {
         console.log(result);
-        updateUser(data?.name, data?.photo)
+        updateUser(data?.name, photo)
           .then(() => {
             console.log(result);
             const userInfo = {
               name: data?.name,
               email: data?.email,
-              image: data?.photo,
+              image: photo,
               role: data?.role,
               amount: parseInt( `${selectedRole === 'worker'? 10: 50}`)
             };
-            axiosPublic.post("/users/add", userInfo).then((res) => {
+            axiosSecure.post("/users/add", userInfo).then((res) => {
               if (res.data.insertedId) {
                 Swal.fire({
                   title: "Wow!",
@@ -104,17 +107,12 @@ const Register = () => {
                   <span className="label-text">Photo</span>
                 </label>
                 <input
-                  type="photo"
-                  placeholder="photo"
-                  {...register("photo", { required: true })}
-                  name="photo"
-                  className="input input-bordered"
-                />
-                {errors.photo && (
-                  <span className="text-[12px] text-red-600">
-                    This field is required
-                  </span>
-                )}
+          type="file"
+          id="image"
+          accept="image/*" 
+          {...register("image",{ required: true,})}
+          className="file-input file-input-bordered w-full max-w-xs"
+        />
               </div>
               <div className="form-control">
                 <label className="label">

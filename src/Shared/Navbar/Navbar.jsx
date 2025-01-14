@@ -2,12 +2,16 @@ import React, { useContext } from "react";
 import { AuthContext } from "../../Authintication/AuthProvider/AuthProvider";
 import { Link, useLocation } from "react-router-dom";
 import { FaSackDollar } from "react-icons/fa6";
+import useUserData from './../../Hooks/useUserData/useUserData';
 
 const Navbar = () => {
-  const { user, loading } = useContext(AuthContext);
+  const { user, loading } = useContext(AuthContext);  
+  const [userData, isPending] = useUserData()
+  // console.log(userData)
   const location = useLocation();
   if (loading) return;
-  console.log(user);
+  // console.log(user);
+  const {name, email, image, amount, role}=userData
   const navItems = (
     <>
       <Link to="/dashboard/home">
@@ -27,7 +31,7 @@ const Navbar = () => {
         </li>
       </Link>
       <li>
-        <p>Worker</p>
+        <p>{role}</p>
       </li>
     </>
   );
@@ -79,7 +83,7 @@ const Navbar = () => {
             >
               <div className="indicator">
                 <FaSackDollar className="text-yellow-500" size={20} />
-                <span className="badge badge-sm indicator-item">100$</span>
+                <span className="badge badge-sm indicator-item">{amount}$</span>
               </div>
             </div>
             <button className="btn btn-ghost btn-circle">
@@ -110,7 +114,7 @@ const Navbar = () => {
                 <div className="w-10 rounded-full">
                   <img
                     alt="Tailwind CSS Navbar component"
-                    src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
+                    src={image}
                   />
                 </div>
               </div>
