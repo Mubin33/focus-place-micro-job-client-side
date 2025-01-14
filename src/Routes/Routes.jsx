@@ -15,6 +15,7 @@ import WorkerTaskList from './../Pages/DashboardPages/WorkerPages/WorkerTaskList
 import WorkerMySubmissions from './../Pages/DashboardPages/WorkerPages/WorkerMySubmissions';
 import WorkerWithdrawals from './../Pages/DashboardPages/WorkerPages/WorkerWithdrawals';
 import PrivetRoute from "../PrivetRoute/PrivetRoute";
+import BuyerUpdateTask from "../Pages/DashboardPages/BuyerPages/BuyerUpdateTask";
 
 
 export const router = createBrowserRouter([
@@ -35,6 +36,9 @@ export const router = createBrowserRouter([
           {path:'mytask', element:<BuyerMyTask/>},
           {path:'paymenthistory', element:<BuyerPaymentHistory/>},
           {path:'purchasecoin', element:<BuyerPurchaseCoin/>}, 
+          {path:'updatetask/:id', element:<BuyerUpdateTask/>,
+            loader:({params})=>fetch(`${import.meta.env.VITE_BASE_URL}/update/task/${params.id}`)
+          }, 
           // worker routes
           {path:'tasklist', element:<WorkerTaskList/>}, 
           {path:'mysubmition', element:<WorkerMySubmissions/>}, 
