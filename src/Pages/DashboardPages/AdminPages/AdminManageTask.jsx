@@ -1,9 +1,11 @@
 import React from 'react';
+import AdminTaskCard from '../../../Components/AdminComponents/AdminTaskCard';
 
 const AdminManageTask = () => {
     return (
         <div>
-            Admin Manage Task
+            admin manage task
+            <AdminTaskCard/>
         </div>
     );
 };

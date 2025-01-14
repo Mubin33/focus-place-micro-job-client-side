@@ -76,7 +76,7 @@ const Login = () => {
                                 </label>
                             </div> 
                             <div className="form-control mt-6">
-                                <input className="btn bg-sky-300 text-black" type="submit" value="Login" name="login" />
+                                <input className="w-full bg-sky-400 text-white py-3 rounded-lg font-medium hover:bg-blue-600 transition" type="submit" value="Login" name="login" />
                             </div>
                         </form>
                         <div className='flex justify-center '>

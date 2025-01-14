@@ -5,13 +5,32 @@ import { FaSackDollar } from "react-icons/fa6";
 import useUserData from './../../Hooks/useUserData/useUserData';
 
 const Navbar = () => {
-  const { user, loading } = useContext(AuthContext);  
+  const { user, loading,logoutUser } = useContext(AuthContext);  
   const [userData, isPending] = useUserData()
   // console.log(userData)
-  const location = useLocation();
-  if (loading) return;
+  const location = useLocation(); 
   // console.log(user);
   const {name, email, image, amount, role}=userData
+
+
+  const handleLogout=()=>{
+    logoutUser()
+    .then((result)=>{
+      console.log(result)
+    })
+    .catch((error)=>{
+      console.log(error)
+    })
+  }
+
+
+
+
+
+
+
+
+
   const navItems = (
     <>
       <Link to="/dashboard/home">
@@ -126,7 +145,7 @@ const Navbar = () => {
                   <a className="justify-between">Profile</a>
                 </li>
                 <li>
-                  <a>Logout</a>
+                  <button onClick={handleLogout}>Logout</button>
                 </li>
               </ul>
             </div>
