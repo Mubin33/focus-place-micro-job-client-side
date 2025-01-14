@@ -5,6 +5,7 @@ import useAxiosSecure from "../../../Hooks/useAxiosSecure/useAxiosSecure";
 import useUserData from "../../../Hooks/useUserData/useUserData";
 import Loading from "../../../Components/Loading/Loading";
 import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
 
 
 
@@ -13,7 +14,8 @@ const BuyerAddNewTasks = () => {
     const [imagePreview, setImagePreview] = useState(null);
     const [imageInfo, setImageInfo] = useState(null);
     const axiosSecure = useAxiosSecure()
-    const [userData, isPending] = useUserData()
+    const [userData, isPending,refetch] = useUserData()
+    const navigate = useNavigate()
 
     
 
@@ -60,11 +62,12 @@ const BuyerAddNewTasks = () => {
         let perTaskAmount = parseFloat(data.payable_amount)
         let totalWorker = parseInt(data.required_workers)
         let totalAmount = parseFloat(perTaskAmount*totalWorker)
+        let afterAmount = (amount-totalAmount)
         try{
             if(amount< totalAmount){
                 Swal.fire({
                     icon:"error",
-                    title:"Opps, uoy do not have insufeciant Balance"
+                    title:"Opps, you do not have insufeciant Balance"
                 })
             }else{
                 await axiosSecure.post('/task', {
@@ -81,15 +84,18 @@ const BuyerAddNewTasks = () => {
                     buyerImage:image,
                     status:"pending"
                 })
+                await axiosSecure.patch(`/users/amount/update/${email}`,{amount:afterAmount})
                 Swal.fire({
                     icon:"success",
                     title:"Wow! successfully published your task"
                 })
+                navigate('/dashboard/mytask')
             }
         }catch(err){
             console.log(err)
         }finally{
             reset();  
+            refetch()
         }
       
       };

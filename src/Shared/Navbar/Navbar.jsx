@@ -3,6 +3,7 @@ import { AuthContext } from "../../Authintication/AuthProvider/AuthProvider";
 import { Link, useLocation } from "react-router-dom";
 import { FaSackDollar } from "react-icons/fa6";
 import useUserData from './../../Hooks/useUserData/useUserData';
+import Swal from "sweetalert2";
 
 const Navbar = () => {
   const { user, loading,logoutUser } = useContext(AuthContext);  
@@ -14,13 +15,30 @@ const Navbar = () => {
 
 
   const handleLogout=()=>{
-    logoutUser()
-    .then((result)=>{
-      console.log(result)
-    })
-    .catch((error)=>{
-      console.log(error)
-    })
+     Swal.fire({
+                title: "Are you sure?",
+                text: "You won't be able to revert this!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Yes, Logout!"
+              }).then((result) => {
+                if (result.isConfirmed) {
+                  logoutUser()
+                  .then((result)=>{
+                    console.log(result)
+                  })
+                  .catch((error)=>{
+                    console.log(error)
+                  })
+                  Swal.fire({
+                    title: "Deleted!",
+                    text: "Your account Logout",
+                    icon: "success"
+                  });
+                }
+              });
   }
 
 
