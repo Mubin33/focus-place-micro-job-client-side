@@ -1,26 +1,57 @@
 import React from 'react';
 import useAxiosSecure from '../../Hooks/useAxiosSecure/useAxiosSecure';
 import Swal from 'sweetalert2';
+import { useQuery } from '@tanstack/react-query';
+import Loading from '../Loading/Loading';
 
-const BuyerReviewCard = ({ item, refetch }) => {
+const BuyerReviewCard = ({ item, refetchi }) => {
 
     const axiosSecure = useAxiosSecure()
-
-
     const {
-        _id,
-        task_id,
-        task_title,
-        perTaskAmount,
-        worker_email,
-        submission_details,
-        worker_name,
-        buyerEmail,
-        buyerName,
-        current_date,
-        status,
-      } = item;
+      _id,
+      task_id,
+      task_title,
+      perTaskAmount,
+      worker_email,
+      submission_details,
+      worker_name,
+      buyerEmail,
+      buyerName,
+      current_date,
+      status,
+    } = item;
 
+
+
+    // const { data:workerUser=[],tData:task=[], isPending, refetch  } = useQuery({
+    //   queryKey: ['workerUser',worker_email ], 
+    //   queryFn: async() =>{
+    //       const {data} = await axiosSecure.get(`/user/${worker_email}`)
+    //       const {tData} = await axiosSecure.get(`/per/task/${task_id}`)
+    //       return data
+    //   }
+    // })
+    const { data: { workerUser = [], task = [] } = {}, isPending, refetch } = useQuery({
+      queryKey: ['workerUser', worker_email, task_id], // Add all relevant keys
+      queryFn: async () => {
+        const workerResponse = await axiosSecure.get(`/user/${worker_email}`);
+        const taskResponse = await axiosSecure.get(`/per/task/${task_id}`);
+        return {
+          workerUser: workerResponse.data,
+          task: taskResponse.data,
+        };
+      },
+    });
+    if(isPending) return <Loading/>
+    const workerAmount = workerUser?.amount
+    let afterAmount = parseFloat(workerAmount+perTaskAmount)
+
+    const required_workers = task.required_workers
+    let after_required_workers = parseInt(required_workers + 1)  
+
+
+
+    
 
 
       const handleStatusChange = async (id, previousStatus, updateStatus) => {
@@ -29,7 +60,12 @@ const BuyerReviewCard = ({ item, refetch }) => {
               }
               try {
                 await axiosSecure.patch(`/apply/task/status/update/${id}`,{ status: updateStatus, } );
-                refetch()
+ 
+                if(updateStatus === 'accept'){
+                  await axiosSecure.patch(`/users/amount/update/${worker_email}`,{amount:afterAmount})
+                }else if(updateStatus === 'reject'){
+                  await axiosSecure.patch(`/task/worker/update/${task_id}`, { after_required_workers });
+                }
                 Swal.fire({
                   title: "Wow!",
                           text: "You update user status",
@@ -37,6 +73,9 @@ const BuyerReviewCard = ({ item, refetch }) => {
                 })
               } catch (error) {
                 console.log(error);
+              }finally{
+                refetchi()
+                refetch()
               }
             };
 
@@ -55,6 +94,13 @@ const BuyerReviewCard = ({ item, refetch }) => {
             </div>
           </div>
         </div>
+      </td>
+      <td className="text-xs">
+        {task_title}
+        <br />
+        <span className="text-[10px] md:text-xs px-2 md:px-0  opacity-50 ">
+          ${perTaskAmount}
+        </span>
       </td>
       <td className="text-xs">
         {submission_details}

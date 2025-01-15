@@ -28,6 +28,7 @@ return (
       <thead >
         <tr>
           <th>Worker info</th>
+          <th>Task info</th>
           <th>Submission details</th> 
           <th>Action</th> 
         </tr>
@@ -35,7 +36,7 @@ return (
       <tbody className="">
         {/* row 1 */}
         {
-            allTask.map(item=> <BuyerReviewCard key={item._id} refetch={refetch} item={item}/>)
+            allTask.map(item=> <BuyerReviewCard key={item._id} refetchi={refetch} item={item}/>)
         }
         
         
