@@ -171,6 +171,7 @@ const BuyerAddNewTasks = () => {
           </label>
           <input
             type="number"
+            step="any"
             {...register("payable_amount", {
               required: "Payable amount is required",
               min: { value: 1, message: "Amount must be at least 1" },

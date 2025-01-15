@@ -71,6 +71,7 @@ const AdminTaskCard = ({ item, refetch }) => {
         {required_workers}
       </td>
       <td onClick={()=>handleDelete(_id)} className="text-[10px] md:btn btn-sm md:p-3  md:text-xs">X</td>
+    
     </tr>
   );
 };

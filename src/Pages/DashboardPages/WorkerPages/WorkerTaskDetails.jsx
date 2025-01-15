@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useLoaderData, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure/useAxiosSecure";
@@ -8,6 +8,7 @@ const WorkerTaskDetails = () => {
     const navigate = useNavigate()
     const axiosSecure = useAxiosSecure()
     const [userData, isPending] = useUserData() 
+    const [isSubmitting, setIsSubmitting] = useState(false);
  const {amount ,
     email ,
     image ,
@@ -44,39 +45,96 @@ const WorkerTaskDetails = () => {
 
 
 
-  const handleForm=async(e)=>{
-    e.preventDefault()
-    
 
-    let worker_apply_info = e.target.worker_apply_info.value 
-    const applyInfo = {
-        task_id:_id,
-        task_title,
-        perTaskAmount,
-        worker_email:email,
-        submission_details:worker_apply_info,
-        worker_name:name,
-        buyerEmail,
-        buyerName,
-        current_date:applyDate,
-        status:'pending',
-    } 
-    console.log(applyInfo)
-
-    try {
-         await axiosSecure.post(`/worker/apply/task`, applyInfo);
-         await axiosSecure.patch(`/task/worker/update/${_id}`, after_required_workers);
+    const handleForm = async (e) => {
+      e.preventDefault();
+  
+      setIsSubmitting(true);
+      let worker_apply_info = e.target.worker_apply_info.value;
+  
+      if (after_required_workers < 0) {
           Swal.fire({
-            icon: "success",
-            title: "Wow! Successfully Updated",
+              icon: "error",
+              title: "Error!",
+              text: "No more workers are required for this task.",
+          });
+          return;
+      }
+  
+      const applyInfo = {
+          task_id: _id,
+          task_title,
+          perTaskAmount,
+          worker_email: email,
+          submission_details: worker_apply_info,
+          worker_name: name,
+          buyerEmail,
+          buyerName,
+          current_date: applyDate,
+          status: 'pending',
+      };
+  
+      try {
+          await axiosSecure.post(`/worker/apply/task`, applyInfo);
+          await axiosSecure.patch(`/task/worker/update/${_id}`, { after_required_workers });
+          Swal.fire({
+              icon: "success",
+              title: "Wow! Successfully Updated",
           });
           navigate("/dashboard/mysubmition");
-        } catch (err) {
+      } catch (err) {
           console.error(err);
-        }
+          Swal.fire({
+              icon: "error",
+              title: "Error!",
+              text: "Something went wrong, please try again later.",
+          });
+      }finally{
+        setIsSubmitting(false);
+      }
+  };
 
 
-  }
+
+
+
+
+
+
+
+  // const handleForm=async(e)=>{
+  //   e.preventDefault()
+    
+
+  //   let worker_apply_info = e.target.worker_apply_info.value 
+  //   const applyInfo = {
+  //       task_id:_id,
+  //       task_title,
+  //       perTaskAmount,
+  //       worker_email:email,
+  //       submission_details:worker_apply_info,
+  //       worker_name:name,
+  //       buyerEmail,
+  //       buyerName,
+  //       current_date:applyDate,
+  //       status:'pending',
+  //   } 
+  //   console.log(applyInfo)
+
+  //   try {
+  //        await axiosSecure.post(`/worker/apply/task`, applyInfo);
+  //        await axiosSecure.patch(`/task/worker/update/${_id}`, after_required_workers);
+  //         Swal.fire({
+  //           icon: "success",
+  //           title: "Wow! Successfully Updated",
+  //         });
+  //         navigate("/dashboard/mysubmition");
+  //       } catch (err) {
+  //         console.error(err);
+  //       }
+
+
+  // }
 
   return (
     <div className="bg-base-300 min-h-screen py-10 px-5">
@@ -156,12 +214,13 @@ const WorkerTaskDetails = () => {
               placeholder="Submit your work"
               className="textarea textarea-bordered textarea-info textarea-md w-full "
             ></textarea>
-            <button
-              type="write for apply"
-              className="w-full text-sm bg-sky-400 text-white py-3 rounded-lg font-medium hover:bg-blue-600 transition"
-            >
-              Apply in this task
-            </button>
+           <button
+    type="submit"
+    className="w-full text-sm bg-sky-400 text-white py-3 rounded-lg font-medium hover:bg-blue-600 transition"
+    disabled={isSubmitting}
+>
+    {isSubmitting ? "Submitting..." : "Apply in this task"}
+</button>
           </div>
         </form>
       </div>
