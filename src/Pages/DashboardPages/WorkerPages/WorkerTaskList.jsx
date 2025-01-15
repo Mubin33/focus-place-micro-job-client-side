@@ -18,7 +18,7 @@ const WorkerTaskList = () => {
           if(isPending) return <Loading/>
 
     return (
-        <div className='grid grid-cols-2 gap-5 md:grid-cols-3 lg:grid-cols-5 md:px-7 lg:px-4 px-3'>
+        <div className='grid grid-cols-2  gap-5 md:grid-cols-3 lg:grid-cols-5 md:px-7 lg:px-4 px-3'>
             {
                 allTask.map(item=> <WorkerTaskCard key={item._id} item={item}/>)
             }

@@ -20,7 +20,7 @@ const WorkerTaskCard = ({ item }) => {
   if (isHidden) return null;
 
   return (
-    <Link>
+    <Link to={`/dashboard/taskdetails/${_id}`}>
       <div className='p-2 shadow-md shadow-green-500 rounded-xl h-full'>
         <div className='h-32 rounded-xl border-[1px] border-sky-400'>
           <img className='h-full w-full rounded-xl' src={taskImage} alt="" />
