@@ -1,13 +1,11 @@
-import React from 'react';
-import BuyerApplyReview from '../../../Components/BuyerComponents/BuyerApplyReview';
+import React from 'react'; 
+import BuyerHome from '../BuyerPages/BuyerHome';
 
 const DashboardHome = () => {
     return (
         <div>
-            <div>
-                <h1 className='text-6xl font-bold text-center'>for Buyer review her all werker Apply</h1>
-                <BuyerApplyReview/>
-            </div>
+            dashboard home all
+            <BuyerHome/>
         </div>
     );
 };
