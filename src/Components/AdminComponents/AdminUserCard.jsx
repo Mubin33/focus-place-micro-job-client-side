@@ -80,7 +80,7 @@ const AdminUserCard = ({item, refetch}) => {
         {role}
         <br />
         <span className="text-[10px] md:text-xs px-2 md:px-0  opacity-50 ">
-          ${amount}
+          {amount}coins
         </span>
       </td>
       <td onClick={()=>handleDelete(_id)} className="text-[10px] md:btn btn-sm md:p-3  md:text-xs">X</td>

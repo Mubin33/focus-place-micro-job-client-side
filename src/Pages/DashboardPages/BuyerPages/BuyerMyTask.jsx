@@ -4,6 +4,7 @@ import useAxiosSecure from '../../../Hooks/useAxiosSecure/useAxiosSecure';
 import { useQuery } from '@tanstack/react-query';
 import BuyerMyTaskCard from '../../../Components/BuyerComponents/BuyerMyTaskCard';
 import Loading from '../../../Components/Loading/Loading';
+import Title from '../../../Components/Title/Title';
 
 const BuyerMyTask = () => {  
     const {user} = useContext(AuthContext)
@@ -21,6 +22,8 @@ const BuyerMyTask = () => {
 
           if(isPending) return <Loading/>
     return (
+      <>
+      <Title title={'My task'} subtitle={'checking'}/>
         <div className="md:px-1 lg:px-16 px-0">
       <div className="overflow-x-auto ">
         <table className="md:table gap-3">
@@ -45,6 +48,7 @@ const BuyerMyTask = () => {
         </table>
       </div>
     </div>
+      </>
     );
 };
 

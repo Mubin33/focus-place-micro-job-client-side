@@ -3,6 +3,7 @@ import useAxiosSecure from '../../../Hooks/useAxiosSecure/useAxiosSecure';
 import { useQuery } from '@tanstack/react-query';
 import Loading from '../../../Components/Loading/Loading';
 import AdminUserCard from '../../../Components/AdminComponents/AdminUserCard';
+import Title from '../../../Components/Title/Title';
 
 const AdminManageUsers = () => {
 
@@ -21,6 +22,8 @@ const AdminManageUsers = () => {
 
 
     return (
+      <>
+      <Title title={'Manage all users'} subtitle={"up or down"}/>
         <div className="md:px-1 lg:px-16 px-0">
       <div className="overflow-x-auto">
         <table className="md:table">
@@ -46,6 +49,7 @@ const AdminManageUsers = () => {
         </table>
       </div>
     </div>
+      </>
     );
 };
 

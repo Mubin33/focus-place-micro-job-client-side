@@ -99,7 +99,7 @@ const BuyerReviewCard = ({ item, refetchi }) => {
         {task_title}
         <br />
         <span className="text-[10px] md:text-xs px-2 md:px-0  opacity-50 ">
-          ${perTaskAmount}
+          {perTaskAmount}coin
         </span>
       </td>
       <td className="text-xs">

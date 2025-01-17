@@ -58,7 +58,7 @@ const BuyerUpdateTask = () => {
     <div>
       <div className="max-w-xl mx-auto mt-10 p-6 bg-gray-100 border border-gray-300 rounded-lg shadow-lg">
         <h2 className="text-2xl font-bold text-gray-700 mb-6 text-center">
-          Create a Task
+          Update a Task
         </h2>
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
           {/* Task Title */}

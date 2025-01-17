@@ -49,7 +49,7 @@ const BuyerHomeStates = () => {
     {/* Total Payment */}
     <div className="stat place-items-center w-full sm:w-1/3 md:w-1/4 flex-grow">
       <div className="stat-title">Total Payment</div>
-      <div className="stat-value">${totalPayment}</div>
+      <div className="stat-value">{totalPayment}coin</div>
       <div className="stat-desc">Total amount paid by you</div>
     </div>
   </div>

@@ -182,7 +182,7 @@ const WorkerTaskDetails = () => {
               Task Details
             </h2>
             <p className="mt-2">
-              <span className="font-semibold">Per Task Amount:</span> $
+              <span className="font-semibold">Per Task Amount:</span> coin
               {perTaskAmount}
             </p>
             <p>

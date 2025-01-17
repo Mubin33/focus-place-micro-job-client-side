@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import Title from "../../../Components/Title/Title";
 
 const BuyerPurchaseCoin = () => {
   const one = 10;
@@ -7,6 +8,8 @@ const BuyerPurchaseCoin = () => {
   const three = 500;
   const four = 1000;
   return (
+    <>
+    <Title title={'Buy coin'} subtitle={'Dollar to coin'}/>
     <div className="px-5 sm:px-10 md:px-16 lg:px-20 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
   <Link to={`/dashboard/buyerpaymentform/${one}`}>
     <div className="border-2 border-black rounded-lg flex items-center justify-center h-28 bg-gradient-to-r from-blue-400 to-purple-500 hover:from-purple-500 hover:to-blue-400 transition-transform transform hover:scale-105 shadow-lg">
@@ -29,6 +32,7 @@ const BuyerPurchaseCoin = () => {
     </div>
   </Link>
 </div>
+    </>
 
   );
 };

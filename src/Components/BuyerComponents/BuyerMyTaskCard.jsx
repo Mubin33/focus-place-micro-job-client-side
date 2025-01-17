@@ -76,7 +76,7 @@ const BuyerMyTaskCard = ({ item, refetchi }) => {
         workers--{required_workers}
         <br />
         <span className="text-[10px] md:text-xs px-2 md:px-0  opacity-50 ">
-          ${perTaskAmount}
+          {perTaskAmount}coin
         </span>
       </td>
       <td

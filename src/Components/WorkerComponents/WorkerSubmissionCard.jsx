@@ -36,7 +36,7 @@ const WorkerSubmissionCard = ({ item, refetch }) => {
           {buyerEmail}
         </span>
       </td>
-      <td className="text-[10px] px-2 md:px-0  md:text-xs">${perTaskAmount}</td>
+      <td className="text-[10px] px-2 md:px-0  md:text-xs">{perTaskAmount}Coin</td>
       {status === "pending" ? (
   <td className="text-[10px] px-2 md:px-0 text-yellow-700 md:text-xs">
     <span className="px-2 py-1 rounded-xl bg-yellow-100 ">{status}</span>

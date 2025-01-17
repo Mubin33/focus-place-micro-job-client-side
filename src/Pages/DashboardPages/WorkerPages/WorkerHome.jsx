@@ -1,9 +1,16 @@
 import React from 'react';
+import WorkerHomePendingSubmission from '../../../Components/WorkerComponents/WorkerHomePendingSubmission';
+import WorkerHomeStates from '../../../Components/WorkerComponents/WorkerHomeStates';
 
 const WorkerHome = () => {
     return (
         <div>
-            worker Home
+            <div>
+                <WorkerHomeStates/>
+            </div>
+            <div>
+                <WorkerHomePendingSubmission/>
+            </div>
         </div>
     );
 };

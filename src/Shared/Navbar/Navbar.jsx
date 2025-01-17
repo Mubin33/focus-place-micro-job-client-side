@@ -123,7 +123,7 @@ const Navbar = () => {
             >
               <div className="indicator">
                 <FaSackDollar className="text-yellow-500" size={20} />
-                <span className="badge badge-sm indicator-item ">{fixedAmount(amount)}$</span>
+                <span className="badge badge-sm indicator-item ">{fixedAmount(amount)}coin</span>
               </div>
             </div>
             <button className="btn btn-ghost btn-circle">
