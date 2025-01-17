@@ -21,7 +21,7 @@ const WorkerTaskCard = ({ item }) => {
 
   return (
     <Link to={`/dashboard/taskdetails/${_id}`}>
-      <div className='p-2 shadow-md shadow-green-500 rounded-xl h-full'>
+      <div className='p-2 shadow-md shadow-base-300 transition-transform transform hover:scale-105 hover:shadow-sky-500 rounded-xl h-full'>
         <div className='h-32 rounded-xl border-[1px] border-sky-400'>
           <img className='h-full w-full rounded-xl' src={taskImage} alt="" />
         </div>

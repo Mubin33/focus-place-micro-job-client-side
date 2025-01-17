@@ -16,14 +16,70 @@ const CheckoutForm = ({ tk }) => {
   const navigate = useNavigate()
 
   const [userData, isPending,refetch] = useUserData();
-  const { email, amount } = userData;
+  const { email, amount, role } = userData;
 
   if (isPending) return <Loading />;
 
   let afterAmount = parseFloat(amount + tk);
 
+
+  
+
+  let payDollar = ''
+    if(tk === 10){
+      payDollar = 1
+    }else if(tk === 150){
+      payDollar = 10
+    }else if(tk === 500){
+      payDollar = 20
+    }else if(tk === 1000){
+      payDollar = 35
+    }
+
+
+    const getCurrentDateTime = () => {
+      const now = new Date();
+    
+      const year = now.getFullYear();
+      const month = String(now.getMonth() + 1).padStart(2, '0'); // Months are zero-indexed
+      const day = String(now.getDate()).padStart(2, '0');
+    
+      const hours = String(now.getHours()).padStart(2, '0');
+      const minutes = String(now.getMinutes()).padStart(2, '0');
+      const seconds = String(now.getSeconds()).padStart(2, '0');
+    
+      return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`; // Format: YYYY-MM-DD HH:mm:ss
+    };
+    
+    const currentDateTime = getCurrentDateTime(); 
+ 
+
+
+
+
+
   const handleSubmit = async (event) => {
     event.preventDefault();
+
+    
+
+
+    //for payment collection database
+    const paymentInfo ={
+      email,
+      payAmount:parseInt(payDollar),
+      role,
+      currentDateTime
+    }
+
+
+
+
+
+
+
+
+
 
     if (isProcessing) return; // Prevent double submission
     setIsProcessing(true);
@@ -91,6 +147,8 @@ const CheckoutForm = ({ tk }) => {
       try {
         const response = await axiosSecure.patch(`/users/amount/update/${email}`, { amount: afterAmount });
         console.log('Amount updated successfully:', response.data);
+
+        await axiosSecure.post(`/payment`, paymentInfo)
         navigate('/dashboard/paymenthistory')
         refetch()
         Swal.fire({
@@ -140,7 +198,7 @@ const CheckoutForm = ({ tk }) => {
           type="submit"
           disabled={!stripe || isProcessing}
         >
-          {isProcessing ? "Processing..." : `Pay $${totalPrice}`}
+          {isProcessing ? "Processing..." : `Pay ${payDollar} $ and get ${totalPrice} coin`}
         </button>
       </form>
     </div>

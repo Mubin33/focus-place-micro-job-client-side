@@ -16,6 +16,7 @@ const BuyerAddNewTasks = () => {
     const axiosSecure = useAxiosSecure()
     const [userData, isPending,refetch] = useUserData()
     const navigate = useNavigate()
+    const [isProcessing, setIsProcessing] = useState(false);
 
     
 
@@ -57,6 +58,7 @@ const BuyerAddNewTasks = () => {
     
     
       const onSubmit =async (data) => {
+        setIsProcessing(true)
         const imageFile = data.image[0];
         const taskImage = await imageUpload(imageFile) 
         let perTaskAmount = parseFloat(data.payable_amount)
@@ -96,6 +98,7 @@ const BuyerAddNewTasks = () => {
         }finally{
             reset();  
             refetch()
+            setIsProcessing(false)
         }
       
       };
@@ -263,7 +266,7 @@ const BuyerAddNewTasks = () => {
           type="submit"
           className="w-full bg-sky-400 text-white py-3 rounded-lg font-medium hover:bg-blue-600 transition"
         >
-          Submit Task
+          {isProcessing ? "Processing..." : `Publish task`}
         </button>
       </form>
     </div>

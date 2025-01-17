@@ -1,6 +1,8 @@
 import React from "react";
 import useAxiosSecure from "../../Hooks/useAxiosSecure/useAxiosSecure";
 import Swal from "sweetalert2";
+import Loading from './../Loading/Loading';
+import { useQuery } from '@tanstack/react-query';
 
 const AdminTaskCard = ({ item, refetch }) => {
     const axiosSecure = useAxiosSecure()
@@ -13,6 +15,26 @@ const AdminTaskCard = ({ item, refetch }) => {
     perTaskAmount,
     taskImage,
   } = item;
+
+
+  const { data:buyerAccount=[], isPending    } = useQuery({
+    queryKey: ['buyerAccount',buyerEmail ], 
+    queryFn: async() =>{
+        const {data} = await axiosSecure.get(`/user/${buyerEmail}`)
+        return data
+    }
+  })
+  if(isPending) return <Loading/> 
+
+
+  const buyerAmount = buyerAccount.amount
+
+  let firstAmount = parseFloat(required_workers* perTaskAmount)
+  let afterAmount = parseFloat(firstAmount + buyerAmount)
+  
+
+
+
 
 
   const handleDelete=async(id)=>{
@@ -28,6 +50,7 @@ const AdminTaskCard = ({ item, refetch }) => {
           }).then((result) => {
             if (result.isConfirmed) {
                 axiosSecure.delete(`/task/delete/${id}`)
+                axiosSecure.patch(`/users/amount/update/${buyerEmail}`, { amount: afterAmount })
                 refetch()
               Swal.fire({
                 title: "Deleted!",
