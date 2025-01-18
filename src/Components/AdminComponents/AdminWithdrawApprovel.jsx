@@ -1,11 +1,13 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import useAxiosSecure from '../../Hooks/useAxiosSecure/useAxiosSecure';
 import { useQuery } from '@tanstack/react-query';
 import Loading from '../Loading/Loading';
 import AdminReviewWithdraw from './AdminReviewWithdraw';
+import { AuthContext } from '../../Authintication/AuthProvider/AuthProvider';
 
 const AdminWithdrawApprovel = () => {
     const axiosSecure = useAxiosSecure()
+    const {user} = useContext(AuthContext)
     
     const { data:allWithdraw=[], isPending ,refetch  } = useQuery({
         queryKey: ['allWithdraw'], 

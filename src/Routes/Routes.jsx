@@ -19,6 +19,9 @@ import BuyerUpdateTask from "../Pages/DashboardPages/BuyerPages/BuyerUpdateTask"
 import WorkerTaskDetails from "../Pages/DashboardPages/WorkerPages/WorkerTaskDetails";
 // import PaymentForm from "../Pages/Payment/PaymentForm";
 import PaymentReservation from "../Pages/Payment/PaymentReservation";
+import AdminRoute from "./AdminRoute";
+import BuyerRoute from "./BuyerRoute";
+import WorkerRoute from "./WorkerRoute";
 
 
 export const router = createBrowserRouter([
@@ -32,22 +35,22 @@ export const router = createBrowserRouter([
           children:[
           {path:'home', element:<DashboardHome/>},
           // admin routes
-          {path:'adminmanagetask', element:<AdminManageTask/>},
-          {path:'adminmanageusers', element:<AdminManageUsers/>}, 
+          {path:'adminmanagetask', element:<AdminRoute>  <AdminManageTask/></AdminRoute>},
+          {path:'adminmanageusers', element:<AdminRoute>  <AdminManageUsers/></AdminRoute>}, 
           // buyer routes
-          {path:'addnewtask', element:<BuyerAddNewTasks/>},
-          {path:'mytask', element:<BuyerMyTask/>},
-          {path:'paymenthistory', element:<BuyerPaymentHistory/>},
-          {path:'purchasecoin', element:<BuyerPurchaseCoin/>}, 
-          {path:'buyerpaymentform/:tk', element:<PaymentReservation/>}, 
-          {path:'updatetask/:id', element:<BuyerUpdateTask/>,
+          {path:'addnewtask', element:<BuyerRoute> <BuyerAddNewTasks/></BuyerRoute>},
+          {path:'mytask', element:<BuyerRoute><BuyerMyTask/></BuyerRoute>},
+          {path:'paymenthistory', element:<BuyerRoute><BuyerPaymentHistory/></BuyerRoute>},
+          {path:'purchasecoin', element:<BuyerRoute><BuyerPurchaseCoin/></BuyerRoute>}, 
+          {path:'buyerpaymentform/:tk', element:<BuyerRoute><PaymentReservation/></BuyerRoute>}, 
+          {path:'updatetask/:id', element:<BuyerRoute><BuyerUpdateTask/></BuyerRoute>,
             loader:({params})=>fetch(`${import.meta.env.VITE_BASE_URL}/per/task/${params.id}`)
           }, 
           // worker routes
-          {path:'tasklist', element:<WorkerTaskList/>}, 
-          {path:'mysubmition', element:<WorkerMySubmissions/>}, 
-          {path:'withdraw', element:<WorkerWithdrawals/>}, 
-          {path:'taskdetails/:id', element:<WorkerTaskDetails/>,
+          {path:'tasklist', element:<WorkerRoute><WorkerTaskList/></WorkerRoute>}, 
+          {path:'mysubmition', element:<WorkerRoute><WorkerMySubmissions/></WorkerRoute>}, 
+          {path:'withdraw', element:<WorkerRoute><WorkerWithdrawals/></WorkerRoute>}, 
+          {path:'taskdetails/:id', element:<WorkerRoute><WorkerTaskDetails/></WorkerRoute>,
             loader:({params})=>fetch(`${import.meta.env.VITE_BASE_URL}/per/task/${params.id}`)
           }, 
         ]},
