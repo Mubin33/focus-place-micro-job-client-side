@@ -21,16 +21,7 @@ const BuyerReviewCard = ({ item, refetchi }) => {
       status,
     } = item;
 
-
-
-    // const { data:workerUser=[],tData:task=[], isPending, refetch  } = useQuery({
-    //   queryKey: ['workerUser',worker_email ], 
-    //   queryFn: async() =>{
-    //       const {data} = await axiosSecure.get(`/user/${worker_email}`)
-    //       const {tData} = await axiosSecure.get(`/per/task/${task_id}`)
-    //       return data
-    //   }
-    // })
+ 
     const { data: { workerUser = [], task = [] } = {}, isPending, refetch } = useQuery({
       queryKey: ['workerUser', worker_email, task_id], // Add all relevant keys
       queryFn: async () => {
