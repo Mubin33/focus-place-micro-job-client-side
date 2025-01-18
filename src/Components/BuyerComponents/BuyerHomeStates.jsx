@@ -46,7 +46,7 @@ const BuyerHomeStates = () => {
 
     {/* Pending Tasks */}
     <div className="stat place-items-center w-full sm:w-1/3 md:w-1/4 flex-grow">
-      <div className="stat-title">Pending Tasks</div>
+      <div className="stat-title">In Pending Task</div>
       <div className="stat-value text-secondary">{totalRequiredWorkers}</div>
       <div className="stat-desc text-secondary">Total required workers for pending tasks</div>
     </div>

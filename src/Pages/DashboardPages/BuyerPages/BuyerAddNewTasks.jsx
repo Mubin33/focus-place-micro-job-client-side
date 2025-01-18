@@ -71,6 +71,7 @@ const BuyerAddNewTasks = () => {
                     icon:"error",
                     title:"Opps, you do not have insufeciant Balance"
                 })
+                navigate('/dashboard/purchasecoin')
             }else{
                 await axiosSecure.post('/task', {
                     taskImage:taskImage,
