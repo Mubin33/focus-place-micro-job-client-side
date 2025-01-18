@@ -19,7 +19,7 @@ const WorkerTaskDetails = () => {
     buyerEmail,
     buyerImage,
     buyerName,
-    completion_date,
+// completion_date,
     perTaskAmount,
     required_workers,
     submission_info,
@@ -187,7 +187,7 @@ const WorkerTaskDetails = () => {
             </p>
             <p>
               <span className="font-semibold">Completion Date:</span>{" "}
-              {completion_date}
+              {/* {completion_date} */}
             </p>
           </div>
         </div>

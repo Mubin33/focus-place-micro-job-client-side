@@ -6,6 +6,10 @@ const AdminUserCard = ({item, refetch}) => {
     const {_id, image, role, name, amount, email} = item
     const axiosSecure = useAxiosSecure()
 
+    const fixedAmount = (amount) => {
+      return parseFloat(amount).toFixed(2);
+    };
+
 
 
     const handleDelete=async(id)=>{
@@ -80,7 +84,7 @@ const AdminUserCard = ({item, refetch}) => {
         {role}
         <br />
         <span className="text-[10px] md:text-xs px-2 md:px-0  opacity-50 ">
-          {amount}coins
+          {fixedAmount(amount)}coins
         </span>
       </td>
       <td onClick={()=>handleDelete(_id)} className="text-[10px] md:btn btn-sm md:p-3  md:text-xs">X</td>

@@ -28,6 +28,11 @@ const BuyerHomeStates = () => {
   const totalRequiredWorkers = myTask.reduce((total, task) => total + task.required_workers, 0);
   const totalPayment = myTask.reduce((total, task) => total + task.totalAmountPay, 0);
 
+  const fixedAmount = (amount) => {
+    return parseFloat(amount).toFixed(2);
+  };
+
+
   return (
     <div className=" ">
   <h1 className="text-3xl font-bold underline my-2">States</h1>
@@ -49,7 +54,7 @@ const BuyerHomeStates = () => {
     {/* Total Payment */}
     <div className="stat place-items-center w-full sm:w-1/3 md:w-1/4 flex-grow">
       <div className="stat-title">Total Payment</div>
-      <div className="stat-value">{totalPayment}coin</div>
+      <div className="stat-value">{fixedAmount(totalPayment)}coin</div>
       <div className="stat-desc">Total amount paid by you</div>
     </div>
   </div>

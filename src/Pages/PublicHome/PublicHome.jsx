@@ -1,9 +1,10 @@
 import React from 'react'; 
+import StaticHomeSection from './StaticHomeSection';
 
 const PublicHome = () => {
     return (
         <div >
-            Home 
+            <StaticHomeSection/>
         </div>
     );
 };

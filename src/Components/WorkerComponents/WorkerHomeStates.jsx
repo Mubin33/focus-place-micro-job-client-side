@@ -27,6 +27,10 @@ const WorkerHomeStates = () => {
       const totalEarning = (amount-10)
 
 
+      const fixedAmount = (amount) => {
+        return parseFloat(amount).toFixed(2);
+      };
+
 
     return (
         <div className=" ">
@@ -47,7 +51,7 @@ const WorkerHomeStates = () => {
     {/* Total Payment */}
     <div className="stat place-items-center w-full sm:w-1/3 md:w-1/4 flex-grow">
       <div className="stat-title">Total Earning</div>
-      <div className="stat-value">{totalEarning}coin</div> 
+      <div className="stat-value">{fixedAmount(totalEarning)}coin</div> 
     </div>
   </div>
 </div>

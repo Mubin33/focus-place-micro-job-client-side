@@ -26,7 +26,7 @@ const WorkerHomePendingSubmission = () => {
 
     return (
         <div>
-            Worker home
+             <h1 className='text-center text-3xl underline my-4 font-bold'>Your all approve submission..</h1>
             <div className="md:px-1 lg:px-16 px-0">
       <div className="overflow-x-auto">
         <table className="md:table">
