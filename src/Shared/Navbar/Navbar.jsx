@@ -4,12 +4,15 @@ import { Link, useLocation } from "react-router-dom";
 import { FaSackDollar } from "react-icons/fa6";
 import useUserData from './../../Hooks/useUserData/useUserData';
 import Swal from "sweetalert2"; 
+import useAxiosSecure from "../../Hooks/useAxiosSecure/useAxiosSecure";
+import { useQuery } from "@tanstack/react-query";
 
 const Navbar = () => {
   const { user, loading,logoutUser } = useContext(AuthContext);  
   const [userData, isPending] = useUserData() 
   const location = useLocation();  
   const {name, email, image, amount, role}=userData
+  const axiosSecure = useAxiosSecure()
   const fixedAmount = (amount) => {
     return parseFloat(amount).toFixed(2);
   };
@@ -40,6 +43,36 @@ const Navbar = () => {
                   });
                 }
               });
+  }
+
+
+  const { data: myNotification = [], isLoading} = useQuery({
+    queryKey: ['myNotification', role === 'admin' ? undefined : email],
+    enabled: !isPending && !!email, // Wait for userData to be available
+    queryFn: async () => {
+        const endpoint = role === 'admin' ? `/notification` : `/notification/${email}`;
+        const { data } = await axiosSecure.get(endpoint);
+        return data;
+    },
+});
+const newNoti = myNotification.filter(item => item.status === 'pending')
+const newNotiLength = newNoti.length
+
+  const handleNoti=async()=>{
+    if(role === 'admin'){
+      try{
+      await axiosSecure.patch(`/update/notification`)
+    }catch(err){
+      console.log(err)
+    }
+    }else{
+      try{
+        await axiosSecure.patch(`/update/notification/${email}`)
+      }catch(err){
+        console.log(err)
+      }
+    }
+    
   }
 
 
@@ -122,7 +155,8 @@ const Navbar = () => {
                 <span className="badge badge-sm indicator-item ">{fixedAmount(amount)} C</span>
               </div>
             </div>
-            <button className="btn btn-ghost btn-circle">
+            <Link to="/dashboard/notification">
+            <button onClick={handleNoti} className="btn btn-ghost btn-circle">
               <div className="indicator">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -138,9 +172,13 @@ const Navbar = () => {
                     d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"
                   />
                 </svg>
-                <span className="badge badge-sm indicator-item">3</span>
+                {
+                  newNotiLength ?<span className="badge badge-sm bg-red-500 text-black indicator-item">{newNotiLength}</span> : ''
+                }
+                
               </div>
             </button>
+            </Link>
             <div className="dropdown dropdown-end">
               <div
                 tabIndex={0}

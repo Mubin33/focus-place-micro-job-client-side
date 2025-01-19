@@ -44,6 +44,12 @@ const WorkerTaskDetails = () => {
 
 
 
+    // noti 2
+  const currentDateTime = new Date(); 
+  console.log("Current Date and Time:", currentDateTime); 
+  const formattedDateTime = `${currentDateTime.getFullYear()}-${String(currentDateTime.getMonth() + 1).padStart(2, '0')}-${String(currentDateTime.getDate()).padStart(2, '0')} ${String(currentDateTime.getHours()).padStart(2, '0')}:${String(currentDateTime.getMinutes()).padStart(2, '0')}:${String(currentDateTime.getSeconds()).padStart(2, '0')}`;
+  
+
 
 
     const handleForm = async (e) => {
@@ -73,10 +79,27 @@ const WorkerTaskDetails = () => {
           current_date: applyDate,
           status: 'pending',
       };
+
+
+
+      // noti 3
+    const massage = `${role}: '${name}' apply to submission in your task ${task_title} `
+    const notificationInfo = {
+      fromRole:role,
+      fromEmail:email, 
+      toEmail:buyerEmail,
+      toRole:'buyer',
+      massage,
+      time:formattedDateTime,
+      status:'pending',
+      goToPage:'/dashboard/home'
+    }
   
       try {
           await axiosSecure.post(`/worker/apply/task`, applyInfo);
           await axiosSecure.patch(`/task/worker/update/${_id}`, { after_required_workers });
+          // noti 4
+      await axiosSecure.post(`/notification`, notificationInfo);
           Swal.fire({
               icon: "success",
               title: "Wow! Successfully Updated",

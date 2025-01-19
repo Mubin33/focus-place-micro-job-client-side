@@ -1,8 +1,12 @@
 import React from "react";
 import useAxiosSecure from "../../Hooks/useAxiosSecure/useAxiosSecure";
 import Swal from "sweetalert2";
+import useUserData from './../../Hooks/useUserData/useUserData';
 
 const AdminReviewWithdraw = ({ item, refetch }) => {
+  // noti 1
+  const [userData] = useUserData()
+  const {email, name,role} = userData
   
   const axiosSecure = useAxiosSecure();
   const {
@@ -19,7 +23,31 @@ const AdminReviewWithdraw = ({ item, refetch }) => {
 
   const afterAmount = parseFloat(workerAmount - coin);
 
+
+  // noti 2
+  const currentDateTime = new Date(); 
+console.log("Current Date and Time:", currentDateTime); 
+const formattedDateTime = `${currentDateTime.getFullYear()}-${String(currentDateTime.getMonth() + 1).padStart(2, '0')}-${String(currentDateTime.getDate()).padStart(2, '0')} ${String(currentDateTime.getHours()).padStart(2, '0')}:${String(currentDateTime.getMinutes()).padStart(2, '0')}:${String(currentDateTime.getSeconds()).padStart(2, '0')}`;
+
+
   const handleStatusChange = async (id, previousStatus, updateStatus) => {
+
+    // noti 3
+    const massage = `${role}: ${updateStatus} your Withdraw request, your amount ${coin}coin/ ${dollar}$ `
+    const notificationInfo = {
+      fromRole:role,
+      fromEmail:email, 
+      toEmail:workerEmail,
+      toRole:'worker',
+      massage,
+      time:formattedDateTime,
+      status:'pending',
+      goToPage:'/dashboard/withdraw'
+    }
+
+
+
+
     if (previousStatus === updateStatus) {
       return console.log("sorry");
     }
@@ -33,6 +61,8 @@ const AdminReviewWithdraw = ({ item, refetch }) => {
           amount: afterAmount,
         });
       }
+      // noti 4
+      await axiosSecure.post(`/notification`, notificationInfo);
       Swal.fire({
         title: "Wow!",
         text: "You update user status",

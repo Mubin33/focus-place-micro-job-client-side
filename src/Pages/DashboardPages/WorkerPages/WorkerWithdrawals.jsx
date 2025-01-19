@@ -9,9 +9,10 @@ const WorkerWithdrawals = () => {
   const [changeAmount, setChangeAmount] = useState("");
   const [perfectAmount, setPerfectAmount] = useState(true);
   const axiosSecure = useAxiosSecure();
-  const [userData, isPending] = useUserData();
+  const [userData, isPending] = useUserData(); 
 
-
+  // noti 1
+  const {email, name,role,amount} = userData
 
   const today = new Date();
     const year = today.getFullYear();
@@ -20,6 +21,11 @@ const WorkerWithdrawals = () => {
     const applyDate =  `${year}-${month}-${day}`; 
 
 
+    // noti 2
+  const currentDateTime = new Date(); 
+  console.log("Current Date and Time:", currentDateTime); 
+  const formattedDateTime = `${currentDateTime.getFullYear()}-${String(currentDateTime.getMonth() + 1).padStart(2, '0')}-${String(currentDateTime.getDate()).padStart(2, '0')} ${String(currentDateTime.getHours()).padStart(2, '0')}:${String(currentDateTime.getMinutes()).padStart(2, '0')}:${String(currentDateTime.getSeconds()).padStart(2, '0')}`;
+  
 
   useEffect(() => {
     if (userData?.amount >= 200) {
@@ -32,19 +38,34 @@ const WorkerWithdrawals = () => {
   const handleForm = async (e) => {
     e.preventDefault();
 
+
+
     let form = e.target;
     const coin = parseFloat(form.coin.value);
     const dollar = parseFloat(form.dollar.value);
     const method = form.method.value;
     const number = parseFloat(form.number.value);
 
-    if (!coin || coin <= 200 || !method || !number) {
+    if (!coin || coin <= 200 || !method || !number || coin > amount) {
       Swal.fire({
         icon: "error",
         title: "Minimum Withdraw 200 coin",
-        text: "And Please fill out all fields correctly.",
+        text: "And See your amount  ",
       });
       return;
+    }
+
+    // noti 3
+    const massage = `${role}: '${name}' send a Withdraw request, amount ${coin}coin `
+    const notificationInfo = {
+      fromRole:role,
+      fromEmail:email, 
+      toEmail:'adminEmail',
+      toRole:'admin',
+      massage,
+      time:formattedDateTime,
+      status:'pending',
+      goToPage:'/dashboard/home'
     }
 
     const withdrawInfo = {
@@ -60,6 +81,8 @@ const WorkerWithdrawals = () => {
 
     try {
       await axiosSecure.post("/withdraw", withdrawInfo);
+      // noti 4
+      await axiosSecure.post(`/notification`, notificationInfo);
       Swal.fire({
         icon: "success",
         title: "Your withdraw request is pending now",
@@ -82,6 +105,9 @@ const WorkerWithdrawals = () => {
         onSubmit={handleForm}
         className="max-w-lg mx-auto bg-base-300 shadow-lg rounded-lg p-6 space-y-6"
       >
+        <div className="flex justify-center">
+        <h1 className="text-2xl font-semibold my-2">You Have: {amount} Coin = {amount/20} $</h1>
+        </div>
         {/* Coin Input */}
         <div className="space-y-2">
           <label className="block text-sm font-semibold text-gray-700">

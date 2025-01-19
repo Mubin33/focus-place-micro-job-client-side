@@ -19,10 +19,12 @@ const BuyerApplyReview = () => {
       })
       if(isPending) return <Loading/>
 
+      const pendingTask = allTask.filter(item => item.status === 'pending')
+
 
 return (
 <div className="md:px-1 lg:px-16 px-0">
-<h1 className='text-center text-3xl underline my-4 font-bold'>All applicant are apply in your task..</h1>
+<h1 className='text-center text-3xl underline my-4 font-bold'>All applicant are apply in your task..(Pending)</h1>
   <div className="overflow-x-auto">
     <table className="md:table">
       {/* head */}
@@ -37,7 +39,7 @@ return (
       <tbody className="">
         {/* row 1 */}
         {
-            allTask.map(item=> <BuyerReviewCard key={item._id} refetchi={refetch} item={item}/>)
+            pendingTask.map(item=> <BuyerReviewCard key={item._id} refetchi={refetch} item={item}/>)
         }
         
         

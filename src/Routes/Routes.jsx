@@ -22,6 +22,8 @@ import PaymentReservation from "../Pages/Payment/PaymentReservation";
 import AdminRoute from "./AdminRoute";
 import BuyerRoute from "./BuyerRoute";
 import WorkerRoute from "./WorkerRoute";
+import SubmissionDetails from "../Pages/DashboardPages/BuyerPages/SubmissionDetails";
+import Notification from "../Pages/Notification/Notification";
 
 
 export const router = createBrowserRouter([
@@ -34,6 +36,7 @@ export const router = createBrowserRouter([
         {path:'/dashboard', element:<PrivetRoute><Dashboard/> </PrivetRoute> , 
           children:[
           {path:'home', element:<DashboardHome/>},
+          {path:'notification', element: <Notification/>},
           // admin routes
           {path:'adminmanagetask', element:<AdminRoute>  <AdminManageTask/></AdminRoute>},
           {path:'adminmanageusers', element:<AdminRoute>  <AdminManageUsers/></AdminRoute>}, 
@@ -45,6 +48,9 @@ export const router = createBrowserRouter([
           {path:'buyerpaymentform/:tk', element:<BuyerRoute><PaymentReservation/></BuyerRoute>}, 
           {path:'updatetask/:id', element:<BuyerRoute><BuyerUpdateTask/></BuyerRoute>,
             loader:({params})=>fetch(`${import.meta.env.VITE_BASE_URL}/per/task/${params.id}`)
+          }, 
+          {path:'submission/:id', element:<BuyerRoute><SubmissionDetails/></BuyerRoute>,
+            loader:({params})=>fetch(`${import.meta.env.VITE_BASE_URL}/submission/details/${params.id}`)
           }, 
           // worker routes
           {path:'tasklist', element:<WorkerRoute><WorkerTaskList/></WorkerRoute>}, 

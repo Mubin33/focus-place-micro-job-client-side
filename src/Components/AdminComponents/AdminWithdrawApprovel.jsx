@@ -18,7 +18,7 @@ const AdminWithdrawApprovel = () => {
       })
       if(isPending) return <Loading/>
 
-      const filteringOnlyPending= allWithdraw.filter(item=> item.status === 'pending')
+      // const filteringOnlyPending= allWithdraw.filter(item=> item.status === 'pending')
 
 
 
@@ -39,7 +39,7 @@ const AdminWithdrawApprovel = () => {
       <tbody className="">
         {/* row 1 */}
         {
-            filteringOnlyPending.map(item=> <AdminReviewWithdraw key={item._id} refetch={refetch} item={item}/>)
+            allWithdraw.map(item=> <AdminReviewWithdraw key={item._id} refetch={refetch} item={item}/>)
         }
         
         

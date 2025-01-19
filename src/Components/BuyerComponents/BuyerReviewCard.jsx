@@ -3,9 +3,16 @@ import useAxiosSecure from '../../Hooks/useAxiosSecure/useAxiosSecure';
 import Swal from 'sweetalert2';
 import { useQuery } from '@tanstack/react-query';
 import Loading from '../Loading/Loading';
+import { FaEye } from "react-icons/fa";
+import { Link } from 'react-router-dom';
+import useUserData from './../../Hooks/useUserData/useUserData';
+
 
 const BuyerReviewCard = ({ item, refetchi }) => {
 
+  // noti 1
+  const [userData] = useUserData()
+  const {email, name,role} = userData
     const axiosSecure = useAxiosSecure()
     const {
       _id,
@@ -41,11 +48,33 @@ const BuyerReviewCard = ({ item, refetchi }) => {
     let after_required_workers = parseInt(required_workers + 1)  
 
 
+    
+
+    // noti 2
+    const currentDateTime = new Date(); 
+console.log("Current Date and Time:", currentDateTime); 
+const formattedDateTime = `${currentDateTime.getFullYear()}-${String(currentDateTime.getMonth() + 1).padStart(2, '0')}-${String(currentDateTime.getDate()).padStart(2, '0')} ${String(currentDateTime.getHours()).padStart(2, '0')}:${String(currentDateTime.getMinutes()).padStart(2, '0')}:${String(currentDateTime.getSeconds()).padStart(2, '0')}`;
 
     
 
 
       const handleStatusChange = async (id, previousStatus, updateStatus) => {
+
+        // noti 3
+        const massage = `${role}: '${name}' ${updateStatus} your submission `
+    const notificationInfo = {
+      fromRole:role,
+      fromEmail:email, 
+      toEmail:worker_email,
+      toRole:'worker',
+      massage,
+      time:formattedDateTime,
+      status:'pending',
+      goToPage:'/dashboard/mysubmition'
+    }
+
+
+
               if (previousStatus === updateStatus) {
                 return console.log("sorry");
               }
@@ -57,6 +86,8 @@ const BuyerReviewCard = ({ item, refetchi }) => {
                 }else if(updateStatus === 'reject'){
                   await axiosSecure.patch(`/task/worker/update/${task_id}`, { after_required_workers });
                 }
+                // noti 4
+                await axiosSecure.post(`/notification`, notificationInfo);
                 Swal.fire({
                   title: "Wow!",
                           text: "You update user status",
@@ -94,11 +125,7 @@ const BuyerReviewCard = ({ item, refetchi }) => {
         </span>
       </td>
       <td className="text-xs">
-        {submission_details}
-        <br />
-        <span className="text-[10px] md:text-xs px-2 md:px-0  opacity-50 ">
-          {current_date}
-        </span>
+        <Link to={`/dashboard/submission/${_id}`}><button className='btn btn-sm'><FaEye  /></button></Link>
       </td>
       <td className="text-[10px] px-2 md:px-0  md:text-xs">
       <select
