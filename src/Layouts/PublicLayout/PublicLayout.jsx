@@ -1,9 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import Navbar from "../../Shared/Navbar/Navbar";
 import { Outlet } from "react-router-dom";
 import Footer from "../../Shared/Footer/Footer";
+import { AuthContext } from "../../Authintication/AuthProvider/AuthProvider";
+import PublicNavbar from "../../Shared/Navbar/PublicNavbar";
 
 const ScrollToTop = () => {
+  
   const [isVisible, setIsVisible] = useState(false);
 
   // Show or hide the button based on scroll position
@@ -44,14 +47,16 @@ const ScrollToTop = () => {
     </div>
   );
 };
-
+ 
 const PublicLayout = () => {
+  const {user} = useContext(AuthContext)
   return (
     <div>
       {/* Navbar */}
       <div className="bg-base-300 z-10 sticky top-0">
         <div className="max-w-screen-xl mx-auto">
-          <Navbar />
+    {user ?<Navbar /> : <PublicNavbar/>}
+          
         </div>
       </div>
 

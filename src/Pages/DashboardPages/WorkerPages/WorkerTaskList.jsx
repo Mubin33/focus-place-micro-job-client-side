@@ -6,7 +6,7 @@ import Loading from '../../../Components/Loading/Loading';
 import Title from '../../../Components/Title/Title';
 
 const WorkerTaskList = () => {
-    const [itemsPerPage, setItemsPerPage] = useState(9);
+    const [itemsPerPage, setItemsPerPage] = useState(15);
     const [currentPage, setCurrentPage] = useState(0);
 
     const axiosSecure = useAxiosSecure();
@@ -75,7 +75,7 @@ const WorkerTaskList = () => {
                 ))}
             </div>
             <div className="flex space-x-2 justify-center my-8">
-            <button  onClick={handlePrev}>Prev</button>
+            <button className='btn btn-outline bg-base-300 btn-sm '  onClick={handlePrev}>Prev</button>
                 {
                     page.map(page => <button 
                         className={`btn btn-outline bg-base-300 btn-sm ${currentPage === page? "bg-sky-500" : ""} `}
@@ -83,8 +83,8 @@ const WorkerTaskList = () => {
                         key={page}
                         >{page + 1}</button>)
                     }
-                    <button onClick={handleNext}>Next</button>
-                <select value={itemsPerPage} onChange={handleItemsPerPage}>
+                    <button className='btn btn-outline bg-base-300 btn-sm ' onClick={handleNext}>Next</button>
+                <select className='btn btn-outline bg-base-300 btn-sm ' value={itemsPerPage} onChange={handleItemsPerPage}>
                     <option value='9'>9</option>
                     <option value='15'>15</option> 
                 </select>

@@ -19,11 +19,8 @@ const Dashboard = () => {
   return (
     <div>
       <div className="flex">
-        <div className="w-11 md:w-40 lg:w-56 min-h-screen bg-base-300">
+        <div className="w-13 md:w-40 lg:w-56 min-h-screen bg-base-300">
           <ul className="p-2 lg:p-4 mt-5 md:mt-10 space-y-3">
-            {/* Admin routes */}
-            {role === "admin" && (
-              <>
                 <li
                   className={`text-lg md:text-sm lg:text-lg   cursor-pointer p-1 lg:p-2 ${
                     location.pathname === "/dashboard/home"
@@ -32,13 +29,17 @@ const Dashboard = () => {
                   }`}
                 >
                   <NavLink
-                    className="flex gap-2 items-center"
+                    className="flex gap-2 items-center text-3xl md:text-lg"
                     to="/dashboard/home"
                   >
                     <IoMdHome />
                     <span className="hidden md:block">Home</span>
                   </NavLink>
                 </li>{" "}
+                
+                    {/* Admin routes */}
+            {role === "admin" && (
+              <>
                 <li
                   className={`text-lg md:text-sm lg:text-lg     cursor-pointer p-1 lg:p-2 ${
                     location.pathname === "/dashboard/adminmanagetask"
@@ -47,7 +48,7 @@ const Dashboard = () => {
                   }`}
                 >
                   <NavLink
-                    className="flex gap-2 items-center"
+                    className="flex gap-2 items-center text-3xl md:text-lg"
                     to="/dashboard/adminmanagetask"
                   >
                     <FaTasks />
@@ -62,7 +63,7 @@ const Dashboard = () => {
                   }`}
                 >
                   <NavLink
-                    className="flex gap-2 items-center"
+                    className="flex gap-2 items-center text-3xl md:text-lg"
                     to="/dashboard/adminmanageusers"
                   >
                     <FaUsers />
@@ -85,7 +86,7 @@ const Dashboard = () => {
                   }`}
                 >
                   <NavLink
-                    className="flex gap-2 items-center"
+                    className="flex gap-2 items-center text-3xl md:text-lg"
                     to="/dashboard/addnewtask"
                   >
                     <MdAddTask />
@@ -100,7 +101,7 @@ const Dashboard = () => {
                   }`}
                 >
                   <NavLink
-                    className="flex gap-2 items-center"
+                    className="flex gap-2 items-center text-3xl md:text-lg"
                     to="/dashboard/mytask"
                   >
                     <BiTask />
@@ -115,7 +116,7 @@ const Dashboard = () => {
                   }`}
                 >
                   <NavLink
-                    className="flex gap-2 items-center"
+                    className="flex gap-2 items-center text-3xl md:text-lg"
                     to="/dashboard/purchasecoin"
                   >
                     <TbCoinFilled />
@@ -130,7 +131,7 @@ const Dashboard = () => {
                   }`}
                 >
                   <NavLink
-                    className="flex gap-2 items-center"
+                    className="flex gap-2 items-center text-3xl md:text-lg"
                     to="/dashboard/paymenthistory"
                   >
                     <MdOutlinePayment />
@@ -152,7 +153,7 @@ const Dashboard = () => {
                   }`}
                 >
                   <NavLink
-                    className="flex gap-2 items-center"
+                    className="flex gap-2 items-center text-3xl md:text-lg"
                     to="/dashboard/tasklist"
                   >
                     <FaTasks />
@@ -167,7 +168,7 @@ const Dashboard = () => {
                   }`}
                 >
                   <NavLink
-                    className="flex gap-2 items-center"
+                    className="flex gap-2 items-center text-3xl md:text-lg"
                     to="/dashboard/mysubmition"
                   >
                     <SiGoogletasks />
@@ -182,7 +183,7 @@ const Dashboard = () => {
                   }`}
                 >
                   <NavLink
-                    className="flex gap-2 items-center"
+                    className="flex gap-2 items-center text-3xl md:text-lg"
                     to="/dashboard/withdraw"
                   >
                     <BsCashCoin />

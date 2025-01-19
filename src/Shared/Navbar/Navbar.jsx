@@ -3,14 +3,12 @@ import { AuthContext } from "../../Authintication/AuthProvider/AuthProvider";
 import { Link, useLocation } from "react-router-dom";
 import { FaSackDollar } from "react-icons/fa6";
 import useUserData from './../../Hooks/useUserData/useUserData';
-import Swal from "sweetalert2";
+import Swal from "sweetalert2"; 
 
 const Navbar = () => {
   const { user, loading,logoutUser } = useContext(AuthContext);  
-  const [userData, isPending] = useUserData()
-  // console.log(userData)
-  const location = useLocation(); 
-  // console.log(user);
+  const [userData, isPending] = useUserData() 
+  const location = useLocation();  
   const {name, email, image, amount, role}=userData
   const fixedAmount = (amount) => {
     return parseFloat(amount).toFixed(2);
@@ -48,9 +46,7 @@ const Navbar = () => {
 
 
 
-
-
-
+ 
 
   const navItems = (
     <>
@@ -71,7 +67,7 @@ const Navbar = () => {
         </li>
       </Link>
       <li>
-        <p>{role}</p>
+        <p className="font-bold uppercase">{role}</p>
       </li>
     </>
   );
@@ -123,7 +119,7 @@ const Navbar = () => {
             >
               <div className="indicator">
                 <FaSackDollar className="text-yellow-500" size={20} />
-                <span className="badge badge-sm indicator-item ">{fixedAmount(amount)}coin</span>
+                <span className="badge badge-sm indicator-item ">{fixedAmount(amount)} C</span>
               </div>
             </div>
             <button className="btn btn-ghost btn-circle">
@@ -161,10 +157,7 @@ const Navbar = () => {
               <ul
                 tabIndex={0}
                 className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow"
-              >
-                <li>
-                  <a className="justify-between">Profile</a>
-                </li>
+              > 
                 <li>
                   <button onClick={handleLogout}>Logout</button>
                 </li>
