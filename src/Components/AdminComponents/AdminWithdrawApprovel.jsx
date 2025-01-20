@@ -19,7 +19,7 @@ const AdminWithdrawApprovel = () => {
       })
       if(isPending) return <Loading/>
 
-      // const filteringOnlyPending= allWithdraw.filter(item=> item.status === 'pending')
+      const filteringOnlyPending= allWithdraw.filter(item=> item.status === 'pending')
 
 
 
@@ -27,7 +27,7 @@ const AdminWithdrawApprovel = () => {
         <div className="md:px-1 lg:px-16 px-0">
           <h1 className='text-center text-3xl underline my-4 font-bold'>Send request for withdraw..</h1>
   {
-    allWithdraw.length === 0 ? <LottiEmpty title="withdraw request"/> :  <div className="overflow-x-auto">
+    filteringOnlyPending.length === 0 ? <LottiEmpty title="withdraw request"/> :  <div className="overflow-x-auto">
     <table className="md:table">
       {/* head */}
       <thead >
@@ -41,7 +41,7 @@ const AdminWithdrawApprovel = () => {
       <tbody className="">
         {/* row 1 */}
         {
-            allWithdraw.map(item=> <AdminReviewWithdraw key={item._id} refetch={refetch} item={item}/>)
+            filteringOnlyPending.map(item=> <AdminReviewWithdraw key={item._id} refetch={refetch} item={item}/>)
         }
         
         

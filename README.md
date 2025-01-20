@@ -1,6 +1,10 @@
 # Focus Place
 
 Welcome to **Focus Place**, a comprehensive Micro Tasking and Earning Platform designed to connect buyers and workers. Our platform facilitates task posting, task completion, and seamless transaction management, empowering users to earn and grow efficiently.
+
+## Admin Details
+- **Email**: admin@gmail.com
+- **Password**: admin123
   
 ## Live Site URL
 [Focus Place](https://focus-place-micro-job-placement.surge.sh/)

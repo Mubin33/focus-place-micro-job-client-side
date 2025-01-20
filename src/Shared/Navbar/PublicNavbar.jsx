@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 const PublicNavbar = () => {
     const navItems = (
         <> 
-          <Link target="_blank" to="https://github.com/Mubin33">
+          <Link target="_blank" to="https://github.com/Programming-Hero-Web-Course4/b10a12-client-side-Mubin33">
             <li>
               <p className="text-sm">Join as Developer</p>
             </li>

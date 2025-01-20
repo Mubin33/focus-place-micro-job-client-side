@@ -42,7 +42,7 @@ const TopWorker = () => {
             <h3 className="text-xl font-semibold text-center">{user.name}</h3>
             <p className="text-center text-gray-500">{user.role}</p>
             <p className="text-center text-sky-500 font-bold">
-              Earned: ${user.amount?.toFixed(2)}
+              Earned: {user.amount?.toFixed(2)} Coins
             </p>
           </div>
         ))}

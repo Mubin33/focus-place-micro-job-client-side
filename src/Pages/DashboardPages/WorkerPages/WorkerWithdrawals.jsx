@@ -53,8 +53,8 @@ const WorkerWithdrawals = () => {
     if (!coin || coin <= 200 || !method || !number || coin > amount) {
       Swal.fire({
         icon: "error",
-        title: "Minimum Withdraw 200 coin",
-        text: "And See your amount  ",
+        title: "Opps..!",
+        text: `Minimum Withdraw 200 coin ${amount}`,
       });
       return;
     }

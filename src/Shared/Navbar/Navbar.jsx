@@ -94,7 +94,7 @@ const newNotiLength = newNoti.length
           </p>
         </li>
       </Link>
-      <Link target="_blank" to="https://github.com/Mubin33">
+      <Link target="_blank" to="https://github.com/Programming-Hero-Web-Course4/b10a12-client-side-Mubin33">
         <li>
           <p className="text-sm">Join as Developer</p>
         </li>
