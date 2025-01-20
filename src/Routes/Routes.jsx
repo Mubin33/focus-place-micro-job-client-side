@@ -24,12 +24,14 @@ import BuyerRoute from "./BuyerRoute";
 import WorkerRoute from "./WorkerRoute";
 import SubmissionDetails from "../Pages/DashboardPages/BuyerPages/SubmissionDetails";
 import Notification from "../Pages/Notification/Notification";
+import ErrorElement from "../Pages/ErrorElement/ErrorElement";
 
 
 export const router = createBrowserRouter([
   {
     path: "/",
     element: <PublicLayout />,
+    errorElement:<ErrorElement/>,
     // errorElement: <Error />,
     children: [
         {path:'/', element:<PublicHome/>},

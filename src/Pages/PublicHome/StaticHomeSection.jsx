@@ -145,17 +145,19 @@ const StaticHomeSection = () => {
       </section>
 
       {/* Call-to-Action Section */}
-      <section className="bg-sky-500 text-white py-16">
+      {user ? "" : <section className="bg-sky-500 text-white py-16">
         <div className="max-w-7xl mx-auto px-4 text-center">
           <h2 className="text-3xl font-bold">Join MicroJobHub Today!</h2>
           <p className="mt-4 text-lg">
             Whether you're looking to get work done or earn money, we have something for you.
           </p>
-          <button className="mt-6 px-6 py-3 bg-white text-sky-500 font-semibold rounded-md hover:bg-gray-100">
+          <Link to='/login'><button className="mt-6 px-6 py-3 bg-white text-sky-500 font-semibold rounded-md hover:bg-gray-100">
             Sign Up Now
-          </button>
+          </button></Link>
+          
         </div>
-      </section>
+      </section>}
+      
     </div>
         </div>
     );

@@ -3,6 +3,9 @@ import { useLoaderData, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure/useAxiosSecure";
 import useUserData from "../../../Hooks/useUserData/useUserData";
+import { Helmet } from "react-helmet-async";
+
+
 
 const WorkerTaskDetails = () => {
     const navigate = useNavigate()
@@ -46,7 +49,7 @@ const WorkerTaskDetails = () => {
 
     // noti 2
   const currentDateTime = new Date(); 
-  console.log("Current Date and Time:", currentDateTime); 
+  //console.log("Current Date and Time:", currentDateTime); 
   const formattedDateTime = `${currentDateTime.getFullYear()}-${String(currentDateTime.getMonth() + 1).padStart(2, '0')}-${String(currentDateTime.getDate()).padStart(2, '0')} ${String(currentDateTime.getHours()).padStart(2, '0')}:${String(currentDateTime.getMinutes()).padStart(2, '0')}:${String(currentDateTime.getSeconds()).padStart(2, '0')}`;
   
 
@@ -142,7 +145,7 @@ const WorkerTaskDetails = () => {
   //       current_date:applyDate,
   //       status:'pending',
   //   } 
-  //   console.log(applyInfo)
+  //   //console.log(applyInfo)
 
   //   try {
   //        await axiosSecure.post(`/worker/apply/task`, applyInfo);
@@ -161,6 +164,9 @@ const WorkerTaskDetails = () => {
 
   return (
     <div className="bg-base-300 min-h-screen py-10 px-5">
+      <Helmet>
+      <title>Task-Details || Focus-Place</title>
+      </Helmet>
       <div className="max-w-4xl mx-auto bg-white rounded-lg shadow-lg p-6">
         {/* Task Title */}
         <h1 className="text-2xl md:text-3xl font-bold mb-4 text-gray-800 text-center">

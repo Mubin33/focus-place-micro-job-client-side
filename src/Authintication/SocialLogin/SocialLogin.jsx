@@ -19,7 +19,7 @@ const SocialLogin = () => {
           role:'worker',
           amount:10
         };
-        console.log(userInfo);
+        //console.log(userInfo);
         axiosSecure.post("/users/add", userInfo).then((res) => {
           if (res) {
               Swal.fire({
@@ -32,7 +32,7 @@ const SocialLogin = () => {
         });
       })
       .catch((error) => {
-        console.log(error);
+        //console.log(error);
         Swal.fire({
           icon: "error",
           title: "Opps....!",

@@ -1,10 +1,12 @@
 import React from 'react';
 import { useLoaderData, useParams } from 'react-router-dom';
 import Title from '../../../Components/Title/Title';
+import { Helmet } from "react-helmet-async";
+
 
 const SubmissionDetails = () => {
     const data = useLoaderData();
-    console.log(data);
+    //console.log(data);
 
     const {
         _id,
@@ -20,6 +22,9 @@ const SubmissionDetails = () => {
 
     return (
         <div className="p-6 min-h-screen">
+            <Helmet>
+      <title>Submission || Focus-Place</title>
+      </Helmet>
             <Title title={'Submission Details'} />
 
             <div className="max-w-3xl mx-auto p-6 bg-base-300 rounded-lg shadow-md">

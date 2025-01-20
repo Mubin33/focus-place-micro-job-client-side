@@ -26,7 +26,7 @@ const AdminReviewWithdraw = ({ item, refetch }) => {
 
   // noti 2
   const currentDateTime = new Date(); 
-console.log("Current Date and Time:", currentDateTime); 
+//console.log("Current Date and Time:", currentDateTime); 
 const formattedDateTime = `${currentDateTime.getFullYear()}-${String(currentDateTime.getMonth() + 1).padStart(2, '0')}-${String(currentDateTime.getDate()).padStart(2, '0')} ${String(currentDateTime.getHours()).padStart(2, '0')}:${String(currentDateTime.getMinutes()).padStart(2, '0')}:${String(currentDateTime.getSeconds()).padStart(2, '0')}`;
 
 
@@ -49,7 +49,7 @@ const formattedDateTime = `${currentDateTime.getFullYear()}-${String(currentDate
 
 
     if (previousStatus === updateStatus) {
-      return console.log("sorry");
+      return //console.log("sorry");
     }
     try {
       await axiosSecure.patch(`/withdraw/status/update/${id}`, {
@@ -69,7 +69,7 @@ const formattedDateTime = `${currentDateTime.getFullYear()}-${String(currentDate
         icon: "success",
       });
     } catch (error) {
-      console.log(error);
+      //console.log(error);
     } finally {
       refetch();
     }

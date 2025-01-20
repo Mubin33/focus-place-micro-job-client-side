@@ -4,6 +4,9 @@ import { useQuery } from '@tanstack/react-query';
 import WorkerTaskCard from '../../../Components/WorkerComponents/WorkerTaskCard';
 import Loading from '../../../Components/Loading/Loading';
 import Title from '../../../Components/Title/Title';
+import { Helmet } from "react-helmet-async";
+
+
 
 const WorkerTaskList = () => {
     const [itemsPerPage, setItemsPerPage] = useState(15);
@@ -36,7 +39,7 @@ const WorkerTaskList = () => {
     const handleItemsPerPage=(e)=>{
         const val = parseInt(e.target.value)
         setCurrentPage(0)
-        console.log(val)
+        //console.log(val)
         setItemsPerPage(val)
     }
 
@@ -68,6 +71,9 @@ const WorkerTaskList = () => {
 
     return (
         <>
+        <Helmet>
+      <title>All-Task || Focus-Place</title>
+      </Helmet>
             <Title title="All Task" />
             <div className="grid grid-cols-2 gap-5 md:grid-cols-3 lg:grid-cols-5 md:px-7 lg:px-4 px-3">
                 {allTask.map((item) => (

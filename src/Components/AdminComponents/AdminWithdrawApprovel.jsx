@@ -4,6 +4,7 @@ import { useQuery } from '@tanstack/react-query';
 import Loading from '../Loading/Loading';
 import AdminReviewWithdraw from './AdminReviewWithdraw';
 import { AuthContext } from '../../Authintication/AuthProvider/AuthProvider';
+import LottiEmpty from '../LottiEmpty/LottiEmpty';
 
 const AdminWithdrawApprovel = () => {
     const axiosSecure = useAxiosSecure()
@@ -25,7 +26,8 @@ const AdminWithdrawApprovel = () => {
     return (
         <div className="md:px-1 lg:px-16 px-0">
           <h1 className='text-center text-3xl underline my-4 font-bold'>Send request for withdraw..</h1>
-  <div className="overflow-x-auto">
+  {
+    allWithdraw.length === 0 ? <LottiEmpty title="withdraw request"/> :  <div className="overflow-x-auto">
     <table className="md:table">
       {/* head */}
       <thead >
@@ -48,6 +50,8 @@ const AdminWithdrawApprovel = () => {
       </tbody> 
     </table>
   </div>
+  }
+ 
 </div>
     );
 };

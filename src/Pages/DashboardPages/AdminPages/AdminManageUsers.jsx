@@ -4,6 +4,8 @@ import { useQuery } from '@tanstack/react-query';
 import Loading from '../../../Components/Loading/Loading';
 import AdminUserCard from '../../../Components/AdminComponents/AdminUserCard';
 import Title from '../../../Components/Title/Title';
+import { Helmet } from "react-helmet-async";
+
 
 const AdminManageUsers = () => {
 
@@ -16,13 +18,16 @@ const AdminManageUsers = () => {
                 return data
             }
           })
-        //   console.log(allUsers)
+        //   //console.log(allUsers)
 
           if(isPending) return <Loading/>
 
 
     return (
       <>
+      <Helmet>
+      <title>Manage-Users || Focus-Place</title>
+      </Helmet>
       <Title title={'Manage all users'} subtitle={"up or down"}/>
         <div className="md:px-1 lg:px-16 px-0">
       <div className="overflow-x-auto">

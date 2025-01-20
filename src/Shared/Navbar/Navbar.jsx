@@ -31,10 +31,10 @@ const Navbar = () => {
                 if (result.isConfirmed) {
                   logoutUser()
                   .then((result)=>{
-                    console.log(result)
+                    //console.log(result)
                   })
                   .catch((error)=>{
-                    console.log(error)
+                    //console.log(error)
                   })
                   Swal.fire({
                     title: "Deleted!",
@@ -63,13 +63,13 @@ const newNotiLength = newNoti.length
       try{
       await axiosSecure.patch(`/update/notification`)
     }catch(err){
-      console.log(err)
+      //console.log(err)
     }
     }else{
       try{
         await axiosSecure.patch(`/update/notification/${email}`)
       }catch(err){
-        console.log(err)
+        //console.log(err)
       }
     }
     

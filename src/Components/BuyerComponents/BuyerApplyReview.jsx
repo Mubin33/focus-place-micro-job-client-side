@@ -4,6 +4,7 @@ import { useQuery } from '@tanstack/react-query';
 import Loading from '../Loading/Loading';
 import { AuthContext } from '../../Authintication/AuthProvider/AuthProvider';
 import BuyerReviewCard from './BuyerReviewCard';
+import LottiEmpty from '../LottiEmpty/LottiEmpty';
 
 const BuyerApplyReview = () => {
     const {user, loading} = useContext(AuthContext)
@@ -25,7 +26,8 @@ const BuyerApplyReview = () => {
 return (
 <div className="md:px-1 lg:px-16 px-0">
 <h1 className='text-center text-3xl underline my-4 font-bold'>All applicant are apply in your task..(Pending)</h1>
-  <div className="overflow-x-auto">
+  {
+    pendingTask.length === 0 ?<LottiEmpty title={'Pending task'}/> : <div className="overflow-x-auto">
     <table className="md:table">
       {/* head */}
       <thead >
@@ -48,6 +50,8 @@ return (
       </tbody> 
     </table>
   </div>
+  }
+  
 </div>
 );
 };

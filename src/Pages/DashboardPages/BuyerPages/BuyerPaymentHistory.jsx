@@ -5,6 +5,10 @@ import Loading from '../../../Components/Loading/Loading';
 import BuyerPaymentCard from '../../../Components/BuyerComponents/BuyerPaymentCard';
 import { AuthContext } from '../../../Authintication/AuthProvider/AuthProvider';
 import Title from '../../../Components/Title/Title';
+import LottiEmpty from '../../../Components/LottiEmpty/LottiEmpty';
+import { Helmet } from "react-helmet-async";
+
+
 
 const BuyerPaymentHistory = () => {
     const {user, loading} = useContext(AuthContext)
@@ -23,8 +27,12 @@ const BuyerPaymentHistory = () => {
 
 return (
   <>
+  <Helmet>
+      <title>Payment-History || Focus-Place</title>
+      </Helmet>
   <Title title={'Payment history'} subtitle={'pay'}/>
-<div className="md:px-1 lg:px-16 px-0">
+  {
+    myPayment.length === 0 ?<LottiEmpty title="payment history"/> :<div className="md:px-1 lg:px-16 px-0">
   <div className="overflow-x-auto">
     <table className="md:table">
       {/* head */}
@@ -48,6 +56,8 @@ return (
     </table>
   </div>
 </div>
+  }
+
   </>
     );
 };

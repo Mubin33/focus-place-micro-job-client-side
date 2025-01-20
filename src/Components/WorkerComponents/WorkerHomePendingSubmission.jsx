@@ -4,6 +4,7 @@ import { useQuery } from '@tanstack/react-query';
 import Loading from '../Loading/Loading';
 import { AuthContext } from '../../Authintication/AuthProvider/AuthProvider';
 import WorkerSubmissionCard from './WorkerSubmissionCard';
+import LottiEmpty from '../LottiEmpty/LottiEmpty';
 
 const WorkerHomePendingSubmission = () => {
     const {user, loading} = useContext(AuthContext)
@@ -28,7 +29,8 @@ const WorkerHomePendingSubmission = () => {
         <div>
              <h1 className='text-center text-3xl underline my-4 font-bold'>Your all approve submission..</h1>
             <div className="md:px-1 lg:px-16 px-0">
-      <div className="overflow-x-auto">
+      {
+        pendingSubmissions.length === 0 ?<LottiEmpty title={'approve submission'}/>:<div className="overflow-x-auto">
         <table className="md:table">
           {/* head */}
           <thead >
@@ -51,6 +53,8 @@ const WorkerHomePendingSubmission = () => {
           </tbody> 
         </table>
       </div>
+      }
+      
     </div>
         </div>
     );

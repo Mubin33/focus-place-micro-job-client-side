@@ -23,15 +23,15 @@ const Register = () => {
   const selectedRole = watch("role");
 
   const onSubmit =async (data) => {
-    console.log(data);
+    //console.log(data);
     const image = data.image[0]
     const photo = await imageUpload(image)
     registerUser(data?.email, data?.password)
       .then((result) => {
-        console.log(result);
+        //console.log(result);
         updateUser(data?.name, photo)
           .then(() => {
-            console.log(result);
+            //console.log(result);
             const userInfo = {
               name: data?.name,
               email: data?.email,
@@ -52,30 +52,18 @@ const Register = () => {
             navigate("/dashboard/home");
           })
           .catch((error) => {
-            console.log(error);
+            //console.log(error);
           });
       })
       .catch((error) => {
-        console.log(error);
+        Swal.fire({
+          icon:'error',
+          title:`Email already used to create account`
+      })  
       });
   };
-
-  // const handleSubmit=(e)=>{
-  //     e.preventDefault()
-
-  //     let form = e.target
-  //     let name = form.name.value
-  //     let email = form.email.value
-  //     let password = form.password.value
-
-  //     registerUser(email, password)
-  //     .then((result)=>{
-  //         console.log(result)
-  //     }).catch((error)=>{
-  //         console.log(error)
-  //     })
-
-  // }
+ 
+  
   return (
     <>
       <div className="hero bg-base-200 min-h-screen">

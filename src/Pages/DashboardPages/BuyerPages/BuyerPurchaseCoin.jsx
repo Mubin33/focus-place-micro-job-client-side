@@ -1,6 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import Title from "../../../Components/Title/Title";
+import { Helmet } from "react-helmet-async";
+
 
 const BuyerPurchaseCoin = () => {
   const one = 10;
@@ -9,6 +11,9 @@ const BuyerPurchaseCoin = () => {
   const four = 1000;
   return (
     <>
+    <Helmet>
+      <title>Purchase-Coin || Focus-Place</title>
+      </Helmet>
     <Title title={'Buy coin'} subtitle={'Dollar to coin'}/>
     <div className="px-5 sm:px-10 md:px-16 lg:px-20 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
   <Link to={`/dashboard/buyerpaymentform/${one}`}>

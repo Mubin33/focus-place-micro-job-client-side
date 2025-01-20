@@ -6,7 +6,7 @@ import useUserData from "../../../Hooks/useUserData/useUserData";
 import Loading from "../../../Components/Loading/Loading";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
-
+import { Helmet } from "react-helmet-async";
 
 
 
@@ -95,7 +95,7 @@ const BuyerAddNewTasks = () => {
                 navigate('/dashboard/mytask')
             }
         }catch(err){
-            console.log(err)
+            //console.log(err)
         }finally{
             reset();  
             refetch()
@@ -110,6 +110,9 @@ const BuyerAddNewTasks = () => {
 
     return (
         <div >
+          <Helmet>
+      <title>Add-task || Focus-Place</title>
+      </Helmet>
             <div className="max-w-xl mx-auto mt-10 p-6 bg-gray-100 border border-gray-300 rounded-lg shadow-lg">
       <h2 className="text-2xl font-bold text-gray-700 mb-6 text-center">
         Create a Task

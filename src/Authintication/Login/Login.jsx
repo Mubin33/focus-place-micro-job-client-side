@@ -2,6 +2,7 @@ import { useContext } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';  
 import SocialLogin from '../SocialLogin/SocialLogin';
 import { AuthContext } from '../AuthProvider/AuthProvider';
+import Swal from 'sweetalert2';
 
 const Login = () => {
     const { loginUser } = useContext(AuthContext);
@@ -20,12 +21,19 @@ const Login = () => {
 
         loginUser(email, password)
                 .then((result) => {
-                    console.log(result);
+                    //console.log(result);
                     // navigate(location?.state?.from?.pathname || "/")
                     navigate("/dashboard/home")
+                    Swal.fire({
+                        icon:'success',
+                        title:`wow..!`
+                    }) 
                 })
                 .catch((error) => {
-                    console.log(error);
+                    Swal.fire({
+                        icon:'error',
+                        title:`Invalid user`
+                    }) 
                 });
  
     };

@@ -5,6 +5,10 @@ import Loading from '../../../Components/Loading/Loading';
 import { AuthContext } from '../../../Authintication/AuthProvider/AuthProvider';
 import WorkerSubmissionCard from '../../../Components/WorkerComponents/WorkerSubmissionCard';
 import Title from '../../../Components/Title/Title';
+import LottiEmpty from '../../../Components/LottiEmpty/LottiEmpty';
+import { Helmet } from "react-helmet-async";
+
+
 
 const WorkerMySubmissions = () => {
     const {user, loading} = useContext(AuthContext)
@@ -26,9 +30,12 @@ const WorkerMySubmissions = () => {
 
     return (
       <>
+      <Helmet>
+      <title>My-Submission || Focus-Place</title>
+      </Helmet>
       <Title title={'My submission'} subtitle={'All apply'}/>
         <div className="md:px-1 lg:px-16 px-0">
-      <div className="overflow-x-auto">
+          {mySubmissions.length === 0 ?<LottiEmpty title="Submission"/> :  <div className="overflow-x-auto">
         <table className="md:table">
           {/* head */}
           <thead >
@@ -50,7 +57,8 @@ const WorkerMySubmissions = () => {
             
           </tbody> 
         </table>
-      </div>
+      </div>}
+     
     </div>
       </>
     );

@@ -4,6 +4,9 @@ import useAxiosSecure from "../../../Hooks/useAxiosSecure/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
 import Loading from "../../../Components/Loading/Loading";
 import Title from "../../../Components/Title/Title";
+import LottiEmpty from "../../../Components/LottiEmpty/LottiEmpty";
+import { Helmet } from "react-helmet-async";
+
 
 const AdminManageTask = () => {
 
@@ -21,9 +24,13 @@ const AdminManageTask = () => {
 
   return (
     <> 
+    <Helmet>
+      <title>Manage-Task || Focus-Place</title>
+      </Helmet>
     <Title title={'Manage all task'} subtitle={'Checking'}/>
     <div className="md:px-1 lg:px-16 px-0">
-      <div className="overflow-x-auto">
+      {
+        allTask.length === 0 ? <LottiEmpty title="task"/> : <div className="overflow-x-auto">
         <table className="md:table">
           {/* head */}
           <thead >
@@ -46,6 +53,8 @@ const AdminManageTask = () => {
           </tbody> 
         </table>
       </div>
+      }
+     
     </div>
     </>
   );

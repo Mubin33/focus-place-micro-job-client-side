@@ -3,6 +3,9 @@ import { useForm } from "react-hook-form";
 import { useLoaderData, useNavigate } from "react-router-dom";  
 import useAxiosSecure from "../../../Hooks/useAxiosSecure/useAxiosSecure";
 import Swal from "sweetalert2";
+import { Helmet } from "react-helmet-async";
+
+
 
 const BuyerUpdateTask = () => {
     const axiosSecure = useAxiosSecure()
@@ -56,6 +59,9 @@ const BuyerUpdateTask = () => {
 
   return (
     <div>
+      <Helmet>
+      <title>Update-Task || Focus-Place</title>
+      </Helmet>
       <div className="max-w-xl mx-auto mt-10 p-6 bg-gray-100 border border-gray-300 rounded-lg shadow-lg">
         <h2 className="text-2xl font-bold text-gray-700 mb-6 text-center">
           Update a Task

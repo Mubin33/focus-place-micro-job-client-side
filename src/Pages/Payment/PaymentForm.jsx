@@ -146,7 +146,7 @@ const CheckoutForm = ({ tk }) => {
       // Payment succeeded, update user amount
       try {
         const response = await axiosSecure.patch(`/users/amount/update/${email}`, { amount: afterAmount });
-        console.log('Amount updated successfully:', response.data);
+        //console.log('Amount updated successfully:', response.data);
 
         await axiosSecure.post(`/payment`, paymentInfo)
         navigate('/dashboard/paymenthistory')

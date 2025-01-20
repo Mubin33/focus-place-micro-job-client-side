@@ -4,6 +4,10 @@ import useUserData from "./../../../Hooks/useUserData/useUserData";
 import Loading from "./../../../Components/Loading/Loading";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure/useAxiosSecure";
 import Swal from "sweetalert2";
+import { Helmet } from "react-helmet-async";
+
+
+
 
 const WorkerWithdrawals = () => {
   const [changeAmount, setChangeAmount] = useState("");
@@ -23,7 +27,7 @@ const WorkerWithdrawals = () => {
 
     // noti 2
   const currentDateTime = new Date(); 
-  console.log("Current Date and Time:", currentDateTime); 
+  //console.log("Current Date and Time:", currentDateTime); 
   const formattedDateTime = `${currentDateTime.getFullYear()}-${String(currentDateTime.getMonth() + 1).padStart(2, '0')}-${String(currentDateTime.getDate()).padStart(2, '0')} ${String(currentDateTime.getHours()).padStart(2, '0')}:${String(currentDateTime.getMinutes()).padStart(2, '0')}:${String(currentDateTime.getSeconds()).padStart(2, '0')}`;
   
 
@@ -99,6 +103,9 @@ const WorkerWithdrawals = () => {
 
   return (
     <div>
+      <Helmet>
+      <title>Withdraw || Focus-Place</title>
+      </Helmet>
       <Title title={"Withdraw"} subtitle={"Coin to dollar"} />
 
       <form

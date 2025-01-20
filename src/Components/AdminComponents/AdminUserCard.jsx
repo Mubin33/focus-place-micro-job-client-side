@@ -34,7 +34,7 @@ const AdminUserCard = ({item, refetch}) => {
                 }
               });
         }catch(err){
-            console.log(err)
+            //console.log(err)
         }
       }
 
@@ -42,7 +42,7 @@ const AdminUserCard = ({item, refetch}) => {
 
       const handleRoleChange = async (id, previousRole, updateRole) => {
         if (previousRole === updateRole) {
-          return console.log("sorry");
+          return //console.log("sorry");
         }
         try {
           await axiosSecure.patch(`/user/role/update/${id}`,{ role: updateRole, } );
@@ -53,7 +53,7 @@ const AdminUserCard = ({item, refetch}) => {
                     icon: "success"
           })
         } catch (error) {
-          console.log(error);
+          //console.log(error);
         }
       };
 

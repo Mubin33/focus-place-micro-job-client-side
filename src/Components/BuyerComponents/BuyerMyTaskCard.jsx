@@ -47,7 +47,7 @@ const BuyerMyTaskCard = ({ item, refetchi }) => {
         }
       });
     } catch (err) {
-      console.log(err);
+      //console.log(err);
     }
   };
 

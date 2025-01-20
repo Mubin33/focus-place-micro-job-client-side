@@ -60,7 +60,7 @@ const AdminTaskCard = ({ item, refetch }) => {
             }
           });
     }catch(err){
-        console.log(err)
+        //console.log(err)
     }
   }
 
