@@ -18,7 +18,7 @@ const WorkerTaskList = () => {
     const { data: allTask = [], isLoading, error, refetch } = useQuery({
         queryKey: ['allTask', currentPage, itemsPerPage],
         queryFn: async () => {
-            const response = await axiosSecure.get(`/task?page=${currentPage}&size=${itemsPerPage}`);
+            const response = await axiosSecure.get(`/task`); // /task?page=${currentPage}&size=${itemsPerPage}
             return response.data;
         },
     });
