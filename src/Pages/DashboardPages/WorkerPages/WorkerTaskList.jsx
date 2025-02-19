@@ -18,7 +18,7 @@ const WorkerTaskList = () => {
     const { data: allTask = [], isLoading, error, refetch } = useQuery({
         queryKey: ['allTask', currentPage, itemsPerPage],
         queryFn: async () => {
-            const response = await axiosSecure.get(`/task?page=${currentPage}&size=${itemsPerPage}`);
+            const response = await axiosSecure.get(`/task`); ///task?page=${currentPage}&size=${itemsPerPage}
             return response.data;
         },
     });
@@ -80,7 +80,7 @@ const WorkerTaskList = () => {
                     <WorkerTaskCard key={item._id} item={item} />
                 ))}
             </div>
-            <div className="flex space-x-2 justify-center my-8">
+            {/* <div className="flex space-x-2 justify-center my-8">
             <button className='btn btn-outline bg-base-300 btn-sm '  onClick={handlePrev}>Prev</button>
                 {
                     page.map(page => <button 
@@ -94,7 +94,7 @@ const WorkerTaskList = () => {
                     <option value='9'>9</option>
                     <option value='15'>15</option> 
                 </select>
-            </div>
+            </div> */}
         </>
     );
 };
