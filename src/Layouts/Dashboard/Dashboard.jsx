@@ -10,6 +10,10 @@ import { SiGoogletasks } from "react-icons/si";
 import { BsCashCoin } from "react-icons/bs";
 import useUserData from "./../../Hooks/useUserData/useUserData";
 import Loading from "../../Components/Loading/Loading";
+import { CgProfile } from "react-icons/cg";
+
+
+
 
 const Dashboard = () => {
   const location = useLocation();
@@ -203,7 +207,7 @@ const Dashboard = () => {
                     className="flex gap-2 items-center text-3xl md:text-lg"
                     to="/dashboard/profile"
                   >
-                    <BsCashCoin />
+                    <CgProfile />
                     <span className="hidden md:block">Profile</span>
                   </NavLink>
                 </li>{" "}
