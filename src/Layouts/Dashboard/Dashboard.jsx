@@ -191,7 +191,22 @@ const Dashboard = () => {
                   </NavLink>
                 </li>{" "}
               </>
-            )}
+            )} 
+            <li
+                  className={`text-lg md:text-sm lg:text-lg  cursor-pointer p-1 lg:p-2 ${
+                    location.pathname === "/dashboard/withdraw"
+                      ? "text-white bg-black rounded-md"
+                      : ""
+                  }`}
+                >
+                  <NavLink
+                    className="flex gap-2 items-center text-3xl md:text-lg"
+                    to="/dashboard/profile"
+                  >
+                    <BsCashCoin />
+                    <span className="hidden md:block">Profile</span>
+                  </NavLink>
+                </li>{" "}
           </ul>
         </div>
         <div className="flex-1">

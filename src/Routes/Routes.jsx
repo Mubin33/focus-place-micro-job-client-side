@@ -25,6 +25,7 @@ import WorkerRoute from "./WorkerRoute";
 import SubmissionDetails from "../Pages/DashboardPages/BuyerPages/SubmissionDetails";
 import Notification from "../Pages/Notification/Notification";
 import ErrorElement from "../Pages/ErrorElement/ErrorElement";
+import Profile from "../Shared/Profile/profile";
 
 
 export const router = createBrowserRouter([
@@ -39,6 +40,7 @@ export const router = createBrowserRouter([
           children:[
           {path:'home', element:<DashboardHome/>},
           {path:'notification', element: <Notification/>},
+          {path:'profile', element: <Profile/>},
           // admin routes
           {path:'adminmanagetask', element:<AdminRoute>  <AdminManageTask/></AdminRoute>},
           {path:'adminmanageusers', element:<AdminRoute>  <AdminManageUsers/></AdminRoute>}, 
