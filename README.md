@@ -2,6 +2,10 @@
 
 Welcome to **Focus Place**, a comprehensive Micro Tasking and Earning Platform designed to connect buyers and workers. Our platform facilitates task posting, task completion, and seamless transaction management, empowering users to earn and grow efficiently.
 
+<div align="center">
+  <img height="700" src="https://i.ibb.co.com/dMc26ZG/Screenshot-61.png"  />
+</div>
+
 ## Admin Details
 - **Email**: admin@gmail.com
 - **Password**: admin123
