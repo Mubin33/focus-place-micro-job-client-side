@@ -34,26 +34,26 @@ const WorkerTaskList = () => {
 
     const count = forPagination?.count || 0;
     const numberOfPage = Math.ceil(count / itemsPerPage);
-    const page = [...Array(numberOfPage).keys()];
+    // const page = [...Array(numberOfPage).keys()];
 
-    const handleItemsPerPage=(e)=>{
-        const val = parseInt(e.target.value)
-        setCurrentPage(0)
-        //console.log(val)
-        setItemsPerPage(val)
-    }
+    // const handleItemsPerPage=(e)=>{
+    //     const val = parseInt(e.target.value)
+    //     setCurrentPage(0)
+    //     //console.log(val)
+    //     setItemsPerPage(val)
+    // }
 
 
-    const handlePrev=()=>{
-        if(currentPage>0){
-            setCurrentPage(currentPage - 1)
-        }
-    }
-    const handleNext=()=>{
-        if(currentPage !== (numberOfPage - 1)){
-            setCurrentPage(currentPage + 1)
-        }
-    }
+    // const handlePrev=()=>{
+    //     if(currentPage>0){
+    //         setCurrentPage(currentPage - 1)
+    //     }
+    // }
+    // const handleNext=()=>{
+    //     if(currentPage !== (numberOfPage - 1)){
+    //         setCurrentPage(currentPage + 1)
+    //     }
+    // }
 
     useEffect(() => {
         refetch();
