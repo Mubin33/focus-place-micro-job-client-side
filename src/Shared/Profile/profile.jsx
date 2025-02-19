@@ -18,7 +18,7 @@ const Profile = () => {
       <Helmet>
         <title>Profile</title>
       </Helmet>
-      <div className='bg-white shadow-lg rounded-2xl md:w-4/5 lg:w-3/5'>
+      <div className='bg-gray-100 p-4 shadow-lg rounded-2xl md:w-4/5 lg:w-3/5'>
          <h1 className='text-5xl text-center font-bold mb-20'>Welcome{name}</h1>
         <div className='flex flex-col items-center justify-center p-4 -mt-16'>
           <a href='#' className='relative block'>
